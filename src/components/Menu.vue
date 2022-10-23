@@ -1,0 +1,52 @@
+<script lang="ts" setup>
+import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
+import MenuItem from './MenuItem.vue';
+</script>
+
+<template>
+  <Menu as="div" class="relative">
+    <MenuButton>
+      <div
+        class="
+          hover:bg-gray-300
+          rounded-full
+          w-6
+          h-6
+          flex
+          items-center
+          justify-center
+        "
+      >
+        <i-mdi-dots-horizontal />
+      </div>
+    </MenuButton>
+
+    <transition
+      enter-active-class="transition duration-100 ease-out"
+      enter-from-class="transform scale-95 opacity-0"
+      enter-to-class="transform scale-100 opacity-100"
+      leave-active-class="transition duration-75 ease-in"
+      leave-from-class="transform scale-100 opacity-100"
+      leave-to-class="transform scale-95 opacity-0"
+    >
+      <MenuItems
+        class="
+          absolute
+          right-0
+          top-0
+          w-56
+          origin-top-right
+          rounded
+          bg-white
+          shadow-lg
+          ring-1 ring-black ring-opacity-5
+          focus:outline-none
+          p-1
+          gap-y-2
+        "
+      >
+        <slot />
+      </MenuItems>
+    </transition>
+  </Menu>
+</template>

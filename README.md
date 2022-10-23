@@ -1,0 +1,3 @@
+# Verlaufsplaner
+
+Einfacher Studienverlaufsplaner.
