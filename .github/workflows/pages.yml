@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build site
-        run: pnpm run build --base=/verlaufsplaner/
+        run: pnpm run build
       - name: Archive artifact
         shell: bash
         run: |
