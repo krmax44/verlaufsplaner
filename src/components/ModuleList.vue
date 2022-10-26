@@ -22,7 +22,7 @@ const startDrag = (event: DragEventInit, module: Module) => {
   <ul class="divide-y divide-gray-300">
     <GroupTransition>
       <li
-        class="p-4 bg-white"
+        class="p-4 bg-white dark:bg-black"
         v-for="module in modules"
         :key="module.id"
         draggable="true"

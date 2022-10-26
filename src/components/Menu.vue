@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
-import MenuItem from './MenuItem.vue';
 import Button from './Button.vue';
 </script>
 
@@ -22,7 +21,7 @@ import Button from './Button.vue';
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="absolute right-0 top-0 w-56 origin-top-right rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-1 gap-y-2"
+        class="absolute right-0 top-0 w-56 origin-top-right rounded bg-white dark:bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-1 gap-y-2"
       >
         <slot />
       </MenuItems>

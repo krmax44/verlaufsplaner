@@ -29,7 +29,9 @@ const closeModal = () => emit('close');
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black bg-opacity-25" />
+        <div
+          class="fixed inset-0 bg-black bg-opacity-25 dark:bg-opacity-90 dark:bg-gray-900"
+        />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -46,12 +48,12 @@ const closeModal = () => emit('close');
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-t-2xl md:rounded-2xl bg-white p-6 text-left shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden rounded-t-2xl md:rounded-2xl bg-white dark:bg-gray-900 p-6 text-left shadow-xl transition-all"
             >
               <div class="flex">
                 <DialogTitle
                   as="h3"
-                  class="text-lg font-medium leading-6 text-gray-900 flex-1"
+                  class="text-lg font-medium leading-6 flex-1 self-center"
                 >
                   <slot name="title" />
                 </DialogTitle>
@@ -64,7 +66,7 @@ const closeModal = () => emit('close');
                 </div>
               </div>
 
-              <div class="mt-2 space-y-2">
+              <div class="mt-2 space-y-4">
                 <DialogDescription>
                   <slot name="description" />
                 </DialogDescription>

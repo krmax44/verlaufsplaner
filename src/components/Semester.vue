@@ -47,10 +47,12 @@ const totalEcts = computed(() =>
 
 <template>
   <div
-    class="rounded shadow relative transition-shadow"
+    class="rounded shadow relative transition-shadow dark:ring-4 ring-purple-50 dark:ring-opacity-25"
     :class="[
-      dropping && !allowedToDrop ? 'ring-8 ring-red-500 ring-opacity-10' : '',
-      dropping && allowedToDrop ? 'ring-8 ring-purple-500 ring-opacity-10' : ''
+      dropping && !allowedToDrop ? '!ring-8 !ring-red-500 ring-opacity-10' : '',
+      dropping && allowedToDrop
+        ? '!ring-8 !ring-purple-500 ring-opacity-10'
+        : ''
     ]"
     @drop="onDrop"
     @dragover.prevent="onDragEnter"
@@ -58,13 +60,13 @@ const totalEcts = computed(() =>
   >
     <div class="p-4">
       <h3 class="font-bold">Semester {{ semester.no }}</h3>
-      <span class="text-purple-800 text-sm">
+      <span class="text-purple-800 dark:text-purple-200 text-sm">
         {{ semester.turnus === 'WS' ? 'Wintersemester' : 'Sommersemester' }} –
         {{ totalEcts }} LP
       </span>
 
       <div
-        class="py-6 rounded bg-purple-50 text-purple-900 flex items-center justify-center mt-2"
+        class="py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
         v-if="semester.modules.length === 0"
       >
         Module per Ziehen hinzufügen
@@ -86,7 +88,7 @@ const totalEcts = computed(() =>
 
     <ScaleTransition>
       <div
-        class="absolute inset-0 flex flex-col items-center justify-center bg-white bg-opacity-80 text-red-500 text-2xl"
+        class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-black bg-opacity-80 text-red-500 text-2xl z-50"
         v-if="dropping && !allowedToDrop"
       >
         <i-material-symbols-error class="mb-2" />

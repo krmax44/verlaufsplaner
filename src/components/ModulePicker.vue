@@ -48,17 +48,19 @@ const onDrop = (event: DragEvent) => {
 
 <template>
   <div
-    class="rounded shadow flex-1"
+    class="rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25"
     @drop="onDrop($event)"
     @dragenter.prevent
     @dragover.prevent
   >
-    <div class="p-4 sticky top-0 bg-white z-50 shadow-xl shadow-white">
+    <div
+      class="p-4 pb-0 sticky top-0 bg-white dark:bg-black z-50 shadow-xl shadow-white dark:shadow-black mb-4"
+    >
       <h3 class="font-bold mb-2">Module</h3>
 
       <input
         type="search"
-        class="w-full text-md py-1 rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+        class="w-full text-md py-1 rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50 bg-white dark:bg-black"
         placeholder="Suchen…"
         v-model="searchTerm"
       />

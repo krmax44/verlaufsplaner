@@ -74,7 +74,7 @@ const moveModuleToSemester = () => {
         <Button
           @click="moveModuleToSemester"
           primary
-          class="mt-2"
+          class="mt-4"
           type="submit"
           :disabled="pickedSemester === undefined"
         >

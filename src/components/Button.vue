@@ -17,7 +17,7 @@ const { rounded, primary } = defineProps({
     :class="[
       rounded === false ? 'w-full rounded-sm' : 'rounded-full w-auto',
       primary === false
-        ? 'hover:bg-gray-200 active:bg-gray-300'
+        ? 'hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-gray-800 dark:active:bg-gray-900'
         : 'bg-purple-50 text-purple-600 hover:bg-purple-100 hover:text-purple-700 active:text-purple-800'
     ]"
   >

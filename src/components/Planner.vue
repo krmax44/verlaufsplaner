@@ -3,19 +3,20 @@ import { usePlannerStore } from '../store/planner';
 import ModulePicker from './ModulePicker.vue';
 import Semester from './Semester.vue';
 import GroupTransition from './ScaleGroupTransition.vue';
+import Button from './Button.vue';
 
 const plannerStore = usePlannerStore();
 </script>
 
 <template>
   <section>
-    <div class="lg:grid grid-cols-3 gap-x-12">
+    <div class="lg:grid grid-cols-3 gap-x-12 space-y-12 lg:space-y-0">
       <ModulePicker
-        class="sticky top-8 h-96 max-h-128 overflow-auto resize-y"
+        class="lg:sticky top-8 h-96 max-h-128 overflow-auto resize-y"
       />
 
       <div class="col-span-2">
-        <div class="space-y-4">
+        <div class="space-y-8">
           <GroupTransition>
             <Semester
               v-for="semester in plannerStore.semesters"
@@ -23,15 +24,12 @@ const plannerStore = usePlannerStore();
               :key="semester.no"
             />
           </GroupTransition>
-        </div>
 
-        <div class="flex justify-center mt-4">
-          <button
-            class="flex text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 font-semibold items-center"
-            @click="plannerStore.addSemester"
-          >
-            <i-material-symbols-add /> Semester hinzufügen…
-          </button>
+          <div class="flex justify-center mt-4">
+            <Button primary @click="plannerStore.addSemester" class="w-auto">
+              <i-material-symbols-add /> Semester hinzufügen…
+            </Button>
+          </div>
         </div>
       </div>
     </div>
