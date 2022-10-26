@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import informatik from '../data/tuberlin/informatik-bsc.json';
 import { Module, Semester } from '../types';
+import { moduleFitsSemester } from '../utils';
 
 export const usePlannerStore = defineStore('planner', {
   state() {
@@ -18,8 +19,8 @@ export const usePlannerStore = defineStore('planner', {
       return state._semesters.map((s) => s.modules).flat();
     },
     unassignedModules(state): Module[] {
-      const assignedModules = this.assignedModules;
-      return state.modules.filter((m) => !assignedModules.includes(m));
+      const assignedModules = this.assignedModules.map((m) => m.id);
+      return state.modules.filter((m) => !assignedModules.includes(m.id));
     },
     semesters(state): Semester[] {
       return state._semesters.map((s, i) => ({
@@ -27,6 +28,12 @@ export const usePlannerStore = defineStore('planner', {
         no: i + 1,
         turnus: i % 2 === 0 ? 'WS' : 'SS'
       }));
+    },
+    collectedEtcs(): number {
+      return this.assignedModules.reduce(
+        (etcs, module) => etcs + module.ects,
+        0
+      );
     }
   },
 
@@ -49,7 +56,7 @@ export const usePlannerStore = defineStore('planner', {
       if (i !== -1) semester.modules.splice(i, 1);
     },
     addModuleToSemester(semester: Semester, module: Module): boolean {
-      if (!module.rota.includes(semester.turnus)) return false;
+      if (!moduleFitsSemester(semester, module)) return false;
 
       const owner = this.semesters.find((s) =>
         this.semesterHasModule(s, module)

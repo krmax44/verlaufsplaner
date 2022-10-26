@@ -8,10 +8,14 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Badge: typeof import('./src/components/Badge.vue')['default']
+    Button: typeof import('./src/components/Button.vue')['default']
+    Dialog: typeof import('./src/components/Dialog.vue')['default']
     IMaterialSymbolsAdd: typeof import('~icons/material-symbols/add')['default']
     IMaterialSymbolsCalendarAddOn: typeof import('~icons/material-symbols/calendar-add-on')['default']
+    IMaterialSymbolsClose: typeof import('~icons/material-symbols/close')['default']
     IMaterialSymbolsDelete: typeof import('~icons/material-symbols/delete')['default']
     IMaterialSymbolsError: typeof import('~icons/material-symbols/error')['default']
+    IMaterialSymbolsSettings: typeof import('~icons/material-symbols/settings')['default']
     IMdiDotsHorizontal: typeof import('~icons/mdi/dots-horizontal')['default']
     Menu: typeof import('./src/components/Menu.vue')['default']
     MenuItem: typeof import('./src/components/MenuItem.vue')['default']
@@ -19,6 +23,7 @@ declare module '@vue/runtime-core' {
     ModuleMenu: typeof import('./src/components/ModuleMenu.vue')['default']
     ModulePicker: typeof import('./src/components/ModulePicker.vue')['default']
     Planner: typeof import('./src/components/Planner.vue')['default']
+    RoundButton: typeof import('./src/components/RoundButton.vue')['default']
     ScaleGroupTransition: typeof import('./src/components/ScaleGroupTransition.vue')['default']
     ScaleTransition: typeof import('./src/components/ScaleTransition.vue')['default']
     Semester: typeof import('./src/components/Semester.vue')['default']
