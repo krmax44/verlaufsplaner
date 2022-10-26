@@ -6,7 +6,8 @@ import App from './App.vue';
 
 const pinia = createPinia();
 const installPersistedStatePlugin = createPersistedStatePlugin({
-  overwrite: true
+  overwrite: true,
+  persist: !import.meta.env.DEV
 });
 pinia.use((context) => installPersistedStatePlugin(context));
 
