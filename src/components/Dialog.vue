@@ -4,7 +4,8 @@ import {
   TransitionChild,
   Dialog,
   DialogPanel,
-  DialogTitle
+  DialogTitle,
+  DialogDescription
 } from '@headlessui/vue';
 import Button from './Button.vue';
 
@@ -56,14 +57,21 @@ const closeModal = () => emit('close');
                 </DialogTitle>
 
                 <div class="ml-auto">
-                  <Button @click="closeModal" class="!rounded-full">
+                  <Button @click="closeModal" rounded>
                     <i-material-symbols-close />
                     <span class="sr-only">Schließen</span>
                   </Button>
                 </div>
               </div>
-              <div class="mt-2">
-                <slot name="body" />
+
+              <div class="mt-2 space-y-2">
+                <DialogDescription>
+                  <slot name="description" />
+                </DialogDescription>
+
+                <div>
+                  <slot name="body" />
+                </div>
               </div>
             </DialogPanel>
           </TransitionChild>

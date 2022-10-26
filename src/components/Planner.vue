@@ -10,7 +10,9 @@ const plannerStore = usePlannerStore();
 <template>
   <section>
     <div class="lg:grid grid-cols-3 gap-x-12">
-      <ModulePicker class="sticky top-0" />
+      <ModulePicker
+        class="sticky top-8 h-96 max-h-128 overflow-auto resize-y"
+      />
 
       <div class="col-span-2">
         <div class="space-y-4">

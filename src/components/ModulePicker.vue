@@ -53,7 +53,7 @@ const onDrop = (event: DragEvent) => {
     @dragenter.prevent
     @dragover.prevent
   >
-    <div class="p-4">
+    <div class="p-4 sticky top-0 bg-white z-50 shadow-xl shadow-white">
       <h3 class="font-bold mb-2">Module</h3>
 
       <input
@@ -64,7 +64,7 @@ const onDrop = (event: DragEvent) => {
       />
     </div>
 
-    <ModuleList :modules="modules" class="flex-1 h-96 overflow-auto">
+    <ModuleList :modules="modules" class="flex-1 overflow-auto">
       <template
         v-for="module in modules"
         :key="module.id"

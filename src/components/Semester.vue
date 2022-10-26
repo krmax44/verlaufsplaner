@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import { usePlannerStore } from '../store/planner';
 import type { Semester } from '../types';
+import { moduleFitsSemester } from '../utils';
 import ModuleList from './ModuleList.vue';
 import ScaleTransition from './ScaleTransition.vue';
 
@@ -31,7 +32,7 @@ const onDragEnter = (event: DragEvent) => {
 
   const module = getDragModule(event);
   if (module) {
-    allowedToDrop.value = module.rota.includes(semester.turnus);
+    allowedToDrop.value = moduleFitsSemester(semester, module);
   }
 };
 
@@ -47,9 +48,10 @@ const totalEcts = computed(() =>
 <template>
   <div
     class="rounded shadow relative transition-shadow"
-    :class="
-      dropping && !allowedToDrop ? 'ring-8 ring-red-500 ring-opacity-10' : ''
-    "
+    :class="[
+      dropping && !allowedToDrop ? 'ring-8 ring-red-500 ring-opacity-10' : '',
+      dropping && allowedToDrop ? 'ring-8 ring-purple-500 ring-opacity-10' : ''
+    ]"
     @drop="onDrop"
     @dragover.prevent="onDragEnter"
     @dragleave.prevent="onDragLeave"
@@ -65,7 +67,7 @@ const totalEcts = computed(() =>
         class="py-6 rounded bg-purple-50 text-purple-900 flex items-center justify-center mt-2"
         v-if="semester.modules.length === 0"
       >
-        Drop modules here
+        Module per Ziehen hinzufügen
       </div>
     </div>
 
