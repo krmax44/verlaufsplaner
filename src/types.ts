@@ -9,6 +9,7 @@ export interface Module {
   rota: string;
   quantifier: number;
   required: boolean;
+  semester: number | undefined;
 }
 
 export interface Course {
@@ -17,8 +18,10 @@ export interface Course {
   university: string;
 }
 
+export type Turnus = 'WS' | 'SS';
+
 export interface Semester {
   no: number;
   modules: Module[];
-  turnus: 'WS' | 'SS';
+  turnus: Turnus;
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
-import Button from './Button.vue';
+import Button from './forms/Button.vue';
 </script>
 
 <template>

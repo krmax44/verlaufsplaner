@@ -1,11 +1,15 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
-import type { Module, Semester } from '../types';
-import { usePlannerStore } from '../store/planner';
+import type { Module } from '../types';
+import { usePlannerStore } from '../store/plannerStore';
 import Menu from './Menu.vue';
 import Dialog from './Dialog.vue';
-import ButtonVue from './Button.vue';
+import Button from './forms/Button.vue';
 import { moduleFitsSemester } from '../utils';
+import { RadioGroup } from '@headlessui/vue';
+import Radio from './forms/Radio.vue';
+
+defineEmits(['delete']);
 
 const plannerStore = usePlannerStore();
 
@@ -20,7 +24,9 @@ const pickedSemester = ref(availableSemesters.value[0]?.no);
 
 const moveModuleToSemester = () => {
   const semester = plannerStore.getSemesterByNo(pickedSemester.value);
-  if (semester) plannerStore.addModuleToSemester(semester, module);
+  if (semester) plannerStore.addModuleToSemester(module, semester);
+
+  showMover.value = false;
 };
 </script>
 
@@ -55,21 +61,16 @@ const moveModuleToSemester = () => {
 
     <template #body>
       <form @submit.prevent="moveModuleToSemester">
-        <div class="flex flex-col space-y-1">
-          <label
-            class="inline-flex items-center"
+        <RadioGroup>
+          <Radio
             v-for="semester in availableSemesters"
             :key="semester.no"
+            v-model="pickedSemester"
+            :value="semester.no"
           >
-            <input
-              type="radio"
-              name="move-semester"
-              :value="semester.no"
-              v-model="pickedSemester"
-            />
-            <span class="ml-2">{{ semester.no }}. Semester</span>
-          </label>
-        </div>
+            {{ semester.no }}. Semester
+          </Radio>
+        </RadioGroup>
 
         <Button
           @click="moveModuleToSemester"

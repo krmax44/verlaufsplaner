@@ -1,14 +1,10 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2';
-import 'tailwindcss/tailwind.css';
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import App from './App.vue';
+import 'tailwindcss/tailwind.css';
 
 const pinia = createPinia();
-const installPersistedStatePlugin = createPersistedStatePlugin({
-  overwrite: true,
-  persist: !import.meta.env.DEV
-});
-pinia.use((context) => installPersistedStatePlugin(context));
+pinia.use(piniaPluginPersistedState);
 
 createApp(App).use(pinia).mount('#app');

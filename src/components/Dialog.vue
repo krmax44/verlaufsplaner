@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogDescription
 } from '@headlessui/vue';
-import Button from './Button.vue';
+import Button from './forms/Button.vue';
 
 const { open } = defineProps<{ open: boolean }>();
 
@@ -19,7 +19,7 @@ const closeModal = () => emit('close');
 
 <template>
   <TransitionRoot appear :show="open" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+    <Dialog as="div" @close="closeModal" class="relative z-40">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"

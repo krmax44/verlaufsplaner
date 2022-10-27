@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import Planner from './components/Planner.vue';
-import Button from './components/Button.vue';
-import { usePlannerStore } from './store/planner';
+import { usePlannerStore } from './store/plannerStore';
+import Planner from './views/Planner.vue';
+import Settings from './views/Settings.vue';
 
 const plannerStore = usePlannerStore();
 </script>
@@ -19,17 +19,14 @@ const plannerStore = usePlannerStore();
       <div class="flex ml-auto space-x-12 items-center">
         <div class="text-center">
           <div
-            v-text="plannerStore.collectedEtcs"
+            v-text="plannerStore.collectedEcts"
             class="text-purple-800 dark:text-purple-200 text-xl"
           />
-          <span class="text-gray-500 dark:text-gray-300 text-sm">ETCS</span>
+          <span class="text-gray-500 dark:text-gray-300 text-sm">ECTS</span>
         </div>
 
         <div>
-          <Button rounded primary>
-            <i-material-symbols-settings class="w-8 h-8" />
-            <span class="sr-only">Einstellungen</span>
-          </Button>
+          <Settings />
         </div>
       </div>
     </div>
