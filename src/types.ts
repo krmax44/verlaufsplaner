@@ -24,6 +24,7 @@ export interface Semester {
   no: number;
   modules: Module[];
   turnus: Turnus;
+  collectedEcts: number;
 }
 
 export interface University {

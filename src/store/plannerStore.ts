@@ -44,11 +44,18 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       const oddSemesters = this.settings.start;
       const evenSemesters = this.settings.start === 'WS' ? 'SS' : 'WS';
 
-      return new Array(semesterCount).fill(undefined).map((_v, i) => ({
-        no: i + 1,
-        modules: this.assignedModules.filter((m) => m.semester === i + 1),
-        turnus: i % 2 === 0 ? oddSemesters : evenSemesters
-      }));
+      return new Array(semesterCount).fill(undefined).map((_v, i) => {
+        const modules = this.assignedModules.filter(
+          (m) => m.semester === i + 1
+        );
+
+        return {
+          no: i + 1,
+          modules,
+          turnus: i % 2 === 0 ? oddSemesters : evenSemesters,
+          collectedEcts: totalEcts(modules)
+        };
+      });
     },
     collectedEcts(): number {
       return totalEcts(this.assignedModules);

@@ -23,8 +23,6 @@ const onDrop = () => {
 
 const dropping = ref(false);
 const canDrop = computed(() => dragStore.canDrop(semester));
-
-const semesterEcts = computed(() => totalEcts(semester.modules));
 </script>
 
 <template>
@@ -44,7 +42,7 @@ const semesterEcts = computed(() => totalEcts(semester.modules));
           <h3 class="font-bold">Semester {{ semester.no }}</h3>
           <span class="text-purple-800 dark:text-purple-200 text-sm">
             {{ semester.turnus === 'WS' ? 'Wintersemester' : 'Sommersemester' }}
-            – {{ semesterEcts }} LP
+            – {{ semester.collectedEcts }} LP
           </span>
         </div>
 
