@@ -25,3 +25,17 @@ export interface Semester {
   modules: Module[];
   turnus: Turnus;
 }
+
+export interface University {
+  name: string;
+  otherNames: string[];
+  slug: string;
+  majors: Major[];
+}
+
+export interface Major {
+  name: string;
+  type: string;
+  standardPeriod: number;
+  slug: string;
+}

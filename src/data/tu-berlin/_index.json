@@ -1,0 +1,10 @@
+{
+  "majors": [
+    {
+      "name": "Informatik",
+      "type": "B.Sc.",
+      "slug": "informatik-bsc",
+      "standardPeriod": 6
+    }
+  ]
+}

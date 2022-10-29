@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import Fuse from 'fuse.js';
 import ModuleList from './ModuleList.vue';
 import ModuleMenu from './ModuleMenu.vue';
-import type { Module } from '../types';
+import Input from './forms/Input.vue';
 import { usePlannerStore } from '../store/plannerStore';
 import { useDragStore } from '../store/dragStore';
 
@@ -54,12 +54,7 @@ const onDrop = () => {
     >
       <h3 class="font-bold mb-2">Module</h3>
 
-      <input
-        type="search"
-        class="w-full text-md py-1 rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50 bg-white dark:bg-black"
-        placeholder="Suchen…"
-        v-model="searchTerm"
-      />
+      <Input type="search" placeholder="Suchen…" v-model="searchTerm" />
     </div>
 
     <ModuleList :modules="modules" class="flex-1 overflow-auto">

@@ -1,15 +1,12 @@
 import { defineStore } from 'pinia';
-import type { Module, Semester, Turnus } from '../types';
-import informatik from '../data/tuberlin/informatik-bsc.json';
+import type { Module, Semester, Turnus, Major } from '../types';
+import { getModules } from '../data/university';
 import { moduleFitsSemester, totalEcts } from '../utils';
 import { version } from '../../package.json';
 
 export const usePlannerStore = defineStore(`planner-${version}`, {
   state() {
-    const modules: Module[] = informatik.modules.map((m) => ({
-      ...m,
-      semester: undefined
-    }));
+    const modules: Module[] = [];
 
     const settings = {
       start: 'WS' as Turnus
@@ -17,6 +14,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
 
     return {
       version,
+      isSetup: false,
       settings,
       modules,
       semesterCount: 6
@@ -83,6 +81,13 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
 
       module.semester = semester.no;
       return true;
+    },
+
+    async setMajor(universitySlug: string, majorSlug: string) {
+      const modules = await getModules(universitySlug, majorSlug);
+      this.modules.splice(0, this.modules.length);
+      this.modules.push(...modules);
+      this.isSetup = true;
     }
   },
   persist: true

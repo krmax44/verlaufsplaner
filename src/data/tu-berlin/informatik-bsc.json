@@ -1,7 +1,4 @@
 {
-  "name": "Informatik",
-  "type": "B.Sc.",
-  "university": "Technische Universität Berlin",
   "modules": [
     {
       "name": "Algorithmen und Datenstrukturen",
