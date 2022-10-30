@@ -27,10 +27,13 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
 <template>
   <div
-    class="rounded shadow relative transition-shadow dark:ring-4 ring-purple-50 dark:ring-opacity-25"
+    class="rounded relative transition-shadow"
     :class="[
-      dropping && !canDrop ? '!ring-8 !ring-red-500 ring-opacity-10' : '',
-      dropping && canDrop ? '!ring-8 !ring-purple-500 ring-opacity-10' : ''
+      dropping && 'ring-8 ring-opacity-50 dark:ring-opacity-75',
+      dropping && !canDrop && 'ring-8 ring-red-500',
+      dropping && canDrop && 'ring-purple-500',
+
+      !dropping && 'shadow dark:ring-4 dark:ring-purple-50 dark:ring-opacity-50'
     ]"
     @drop="onDrop"
     @dragover.prevent="dropping = true"
@@ -79,7 +82,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
     <ScaleTransition>
       <div
-        class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-black bg-opacity-80 text-red-500 text-2xl z-20"
+        class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-black bg-opacity-90 text-red-500 text-2xl z-20"
         v-if="dropping && !canDrop"
       >
         <i-material-symbols-error class="mb-2" />

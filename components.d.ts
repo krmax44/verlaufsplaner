@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActionLink: typeof import('./src/components/ActionLink.vue')['default']
     Badge: typeof import('./src/components/Badge.vue')['default']
     Button: typeof import('./src/components/forms/Button.vue')['default']
     Dialog: typeof import('./src/components/Dialog.vue')['default']

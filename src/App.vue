@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import Header from './components/Header.vue';
+import ScaleTransition from './components/utils/ScaleTransition.vue';
 </script>
 
 <template>
@@ -7,7 +8,9 @@ import Header from './components/Header.vue';
 
   <main>
     <div class="container mx-auto px-4">
-      <router-view />
+      <ScaleTransition>
+        <router-view />
+      </ScaleTransition>
     </div>
   </main>
 </template>

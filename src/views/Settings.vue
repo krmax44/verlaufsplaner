@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import ActionLink from '../components/ActionLink.vue';
 import Dialog from '../components/Dialog.vue';
 
 const isOpen = ref(false);
@@ -9,7 +10,9 @@ const isOpen = ref(false);
   <Dialog :open="isOpen" @close="isOpen = false">
     <template #title> Einstellungen </template>
 
-    <template #body> </template>
+    <template #body>
+      <ActionLink :to="{ name: 'setup' }">zur Einrichtung</ActionLink>
+    </template>
   </Dialog>
 
   <Button rounded primary @click="isOpen = true">
