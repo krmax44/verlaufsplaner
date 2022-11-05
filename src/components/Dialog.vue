@@ -48,7 +48,7 @@ const closeModal = () => emit('close');
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-t-2xl md:rounded-2xl bg-white dark:bg-gray-900 p-6 text-left shadow-xl transition-all"
+              class="w-full max-w-lg transform overflow-hidden rounded-t-2xl md:rounded-2xl bg-white dark:bg-gray-900 p-6 text-left shadow-xl transition-all"
             >
               <div class="flex">
                 <DialogTitle

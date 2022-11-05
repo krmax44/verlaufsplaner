@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePlannerStore } from '../store/plannerStore';
-import ModulePicker from '../components/ModulePicker.vue';
+import ModulePicker from '../components/module/ModulePicker.vue';
 import Semester from '../components/Semester.vue';
 import ScaleGroupTransition from '../components/utils/ScaleGroupTransition.vue';
 import Button from '../components/forms/Button.vue';

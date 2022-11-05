@@ -17,8 +17,8 @@ const value = computed({
 <template>
   <label class="inline-flex items-center">
     <input
-      type="radio"
-      class="text-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none"
+      type="checkbox"
+      class="text-purple-500 focus:ring focus:ring-purple-200 focus:ring-offset-0 focus:outline-none border-gray-700 rounded disabled:text-gray-400"
       v-model="value"
       v-bind="$attrs"
     />

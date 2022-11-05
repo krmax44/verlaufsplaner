@@ -24,14 +24,14 @@ const update = (event: Event) => {
       :class="
         value
           ? 'translate-0 scale-75'
-          : 'translate-x-3 translate-y-8 pointer-events-none'
+          : 'translate-x-3 translate-y-9 pointer-events-none'
       "
       v-if="$slots.default"
     >
       <slot />
     </p>
-    <input
-      class="w-full text-md py-1 rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50 bg-white dark:bg-black invalid:ring invalid:ring-red-500 invalid:ring-opacity-50 dark:invalid:ring-opacity-75"
+    <textarea
+      class="w-full text-md py-2 rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50 bg-white dark:bg-black"
       :class="
         $slots.default
           ? 'placeholder:text-transparent'

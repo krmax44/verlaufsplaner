@@ -5,9 +5,15 @@ import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import { usePlannerStore } from './store/plannerStore';
 import { routes } from './routes';
+import { version } from '../package.json';
 import 'tailwindcss/tailwind.css';
 
 const app = createApp(App);
+
+if (localStorage.getItem('version') !== version) {
+  localStorage.clear();
+  localStorage.setItem('version', version);
+}
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedState);

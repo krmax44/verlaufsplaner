@@ -3,193 +3,178 @@
     {
       "name": "Algorithmen und Datenstrukturen",
       "id": 40022,
-      "version": 8,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Analysis I und Lineare Algebra für Ingenieurwissenschaften",
       "id": 20122,
-      "version": 3,
       "ects": 12,
-      "graded": true,
-      "examination": "Schriftliche Prüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS/SS",
-      "quantifier": 0,
+      "rota": [
+        "WS",
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Berechenbarkeit und Komplexität",
       "id": 40356,
-      "version": 9,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Diskrete Strukturen",
       "id": 40024,
-      "version": 11,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Einführung in die Programmierung",
       "id": 40017,
-      "version": 9,
       "ects": 6,
-      "graded": true,
-      "examination": "Schriftliche Prüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Formale Sprachen und Automaten",
       "id": 40018,
-      "version": 8,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Informatik Propädeutikum",
       "id": 40779,
-      "version": 9,
       "ects": 3,
-      "graded": true,
-      "examination": "Schriftliche Prüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 0,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Informatik und Gesellschaft",
       "id": 40499,
-      "version": 11,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Informationssysteme und Datenanalyse",
       "id": 40002,
-      "version": 10,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Logik",
       "id": 40023,
-      "version": 6,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Rechnernetze und Verteilte Systeme",
       "id": 40672,
-      "version": 12,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Rechnerorganisation",
       "id": 40019,
-      "version": 8,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Softwaretechnik und Programmierparadigmen",
       "id": 40029,
-      "version": 6,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     },
     {
       "name": "Stochastik für Informatik",
       "id": 20217,
-      "version": 5,
       "ects": 9,
-      "graded": true,
-      "examination": "Schriftliche Prüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Systemprogrammierung",
       "id": 40020,
-      "version": 6,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "SS",
-      "quantifier": 1,
+      "rota": [
+        "SS"
+      ],
       "required": true
     },
     {
       "name": "Wissenschaftliches Rechnen",
       "id": 40038,
-      "version": 9,
       "ects": 6,
-      "graded": true,
-      "examination": "Portfolioprüfung",
+      "description": "",
       "language": "Deutsch",
-      "rota": "WS",
-      "quantifier": 1,
+      "rota": [
+        "WS"
+      ],
       "required": true
     }
   ]

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
-import type { Module } from '../types';
-import { usePlannerStore } from '../store/plannerStore';
-import Menu from './Menu.vue';
-import Dialog from './Dialog.vue';
-import Button from './forms/Button.vue';
-import { moduleFitsSemester } from '../utils';
-import { RadioGroup } from '@headlessui/vue';
-import Radio from './forms/Radio.vue';
+import type { Module } from '../../types';
+import { usePlannerStore } from '../../store/plannerStore';
+import Menu from '../Menu.vue';
+import Dialog from '../Dialog.vue';
+import Button from '../forms/Button.vue';
+import { moduleFitsSemester } from '../../utils';
+import VerticalFieldset from '../forms/VerticalFieldset.vue';
+import Radio from '../forms/Radio.vue';
 
 defineEmits(['delete']);
 
@@ -61,16 +61,17 @@ const moveModuleToSemester = () => {
 
     <template #body>
       <form @submit.prevent="moveModuleToSemester">
-        <RadioGroup>
+        <VerticalFieldset>
           <Radio
             v-for="semester in availableSemesters"
             :key="semester.no"
             v-model="pickedSemester"
             :value="semester.no"
+            name="move-semester"
           >
             {{ semester.no }}. Semester
           </Radio>
-        </RadioGroup>
+        </VerticalFieldset>
 
         <Button
           @click="moveModuleToSemester"

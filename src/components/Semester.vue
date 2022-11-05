@@ -4,7 +4,7 @@ import { useDragStore } from '../store/dragStore';
 import { usePlannerStore } from '../store/plannerStore';
 import type { Semester } from '../types';
 import { totalEcts } from '../utils';
-import ModuleList from './ModuleList.vue';
+import ModuleList from './module/ModuleList.vue';
 import ScaleTransition from './utils/ScaleTransition.vue';
 
 const plannerStore = usePlannerStore();
@@ -42,7 +42,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
     <div class="p-4">
       <div class="flex">
         <div>
-          <h3 class="font-bold">Semester {{ semester.no }}</h3>
+          <h3 class="font-bold">{{ semester.no }}. Semester</h3>
           <span class="text-purple-800 dark:text-purple-200 text-sm">
             {{ semester.turnus === 'WS' ? 'Wintersemester' : 'Sommersemester' }}
             – {{ semester.collectedEcts }} LP

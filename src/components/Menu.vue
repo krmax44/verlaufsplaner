@@ -7,7 +7,7 @@ import Button from './forms/Button.vue';
   <Menu as="div" class="relative z-10">
     <MenuButton as="template">
       <Button rounded>
-        <i-mdi-dots-horizontal />
+        <i-material-symbols-more-horiz />
         <span class="sr-only">Optionen…</span>
       </Button>
     </MenuButton>

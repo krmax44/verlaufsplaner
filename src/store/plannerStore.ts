@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { Module, Semester, Turnus, Major } from '../types';
+import type { Module, Semester, Turnus } from '../types';
 import { getModules } from '../data/university';
 import { moduleFitsSemester, totalEcts } from '../utils';
 import { version } from '../../package.json';
@@ -63,6 +63,13 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
   },
 
   actions: {
+    addModule(module: Module) {
+      this.modules.push({ ...module });
+    },
+    removeModule(module: Module) {
+      const i = this.modules.findIndex((m) => m.id === module.id);
+      if (i !== -1) this.modules.splice(i, 1);
+    },
     getModuleById(id: number): Module | undefined {
       return this.modules.find((m) => m.id === id);
     },
