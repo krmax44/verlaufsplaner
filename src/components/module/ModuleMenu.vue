@@ -2,14 +2,18 @@
 import { ref, computed } from 'vue';
 import type { Module } from '../../types';
 import { usePlannerStore } from '../../store/plannerStore';
+import { moduleFitsSemester } from '../../utils';
 import Menu from '../Menu.vue';
+import MenuItem from '../MenuItem.vue';
 import Dialog from '../Dialog.vue';
 import Button from '../forms/Button.vue';
-import { moduleFitsSemester } from '../../utils';
 import VerticalFieldset from '../forms/VerticalFieldset.vue';
 import Radio from '../forms/Radio.vue';
 
-defineEmits(['delete']);
+defineEmits<{
+  (e: 'delete', module: Module): void;
+  (e: 'edit', module: Module): void;
+}>();
 
 const plannerStore = usePlannerStore();
 
@@ -32,21 +36,15 @@ const moveModuleToSemester = () => {
 
 <template>
   <Menu>
-    <MenuItem @click="$emit('delete')">
-      <i-material-symbols-delete
-        class="mr-1 text-purple-600 group-hover:text-purple-800"
-      />
-
-      Löschen
-    </MenuItem>
-
     <MenuItem @click="showMover = true">
-      <i-material-symbols-calendar-add-on
+      <i-material-symbols-swap-horiz
         class="mr-1 text-purple-600 group-hover:text-purple-800"
       />
 
-      zu Semester verschieben
+      verschieben
     </MenuItem>
+
+    <slot />
   </Menu>
 
   <Dialog :open="showMover" @close="showMover = false">

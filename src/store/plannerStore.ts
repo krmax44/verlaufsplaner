@@ -66,8 +66,17 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
     addModule(module: Module) {
       this.modules.push({ ...module });
     },
+    getModuleIndex(module: Module): number {
+      return this.modules.findIndex((m) => m.id === module.id);
+    },
+    updateModule(id: number, module: Module) {
+      const i = this.modules.findIndex((m) => m.id === id);
+      if (i !== -1) {
+        this.modules[i] = { ...module };
+      }
+    },
     removeModule(module: Module) {
-      const i = this.modules.findIndex((m) => m.id === module.id);
+      const i = this.getModuleIndex(module);
       if (i !== -1) this.modules.splice(i, 1);
     },
     getModuleById(id: number): Module | undefined {

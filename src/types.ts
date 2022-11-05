@@ -4,6 +4,7 @@ export interface Module {
   ects: number;
   rota: Turnus[];
   description: string;
+  url: string;
   required: boolean;
   semester: number | undefined;
 }

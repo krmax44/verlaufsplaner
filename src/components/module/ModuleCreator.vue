@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { Module, Turnus } from '../../types';
 import Dialog from '../Dialog.vue';
 import Checkbox from '../forms/Checkbox.vue';
@@ -11,9 +11,10 @@ import { usePlannerStore } from '../../store/plannerStore';
 import { moduleFitsSemester } from '../../utils';
 import Select from '../forms/Select.vue';
 
+const props = defineProps<{ module?: Module; open: boolean }>();
+const emit = defineEmits(['close']);
+
 const plannerStore = usePlannerStore();
-const isOpen = ref(false);
-const open = () => (isOpen.value = true);
 
 const defaults = {
   name: '',
@@ -25,31 +26,50 @@ const defaults = {
   semester: undefined,
   required: false
 };
-const module = reactive({ ...defaults });
+const module = ref({ ...(props.module ?? defaults) });
+
+const editing = computed((): boolean => {
+  return (
+    props.module?.id !== undefined &&
+    plannerStore.getModuleById(props.module.id) !== undefined
+  );
+});
 
 const availableSemesters = computed(() =>
-  plannerStore.semesters.filter((s) => moduleFitsSemester(s, module as Module))
+  plannerStore.semesters.filter((s) =>
+    moduleFitsSemester(s, module.value as Module)
+  )
 );
 
-const add = () => {
-  plannerStore.addModule(module as Module);
+const save = () => {
+  if (editing) {
+    plannerStore.updateModule(props.module!.id, module.value as Module);
+  } else {
+    plannerStore.addModule(module.value as Module);
+  }
+
+  emit('close');
 };
 
 watch(module, ({ semester }) => {
-  console.log(semester);
   const semesters = availableSemesters.value.map((s) => s.no);
-  if (semester && !semesters.includes(semester)) module.semester = undefined;
+  if (semester && !semesters.includes(semester))
+    module.value.semester = undefined;
+});
+
+watch(props, ({ module: m }) => {
+  if (m) module.value = { ...m };
 });
 </script>
 
 <template>
-  <slot :open="open" />
-
-  <Dialog :open="isOpen" @close="isOpen = false">
-    <template #title> Modul hinzufügen </template>
+  <Dialog :open="props.open" @close="$emit('close')">
+    <template #title>
+      {{ editing ? `Modul #${module.id} bearbeiten` : 'Modul hinzufügen' }}
+    </template>
 
     <template #body>
-      <form class="space-y-2" @submit.prevent="add">
+      <form class="space-y-2" @submit.prevent="save">
         <Input type="text" v-model="module.name" required minlength="1">
           Modulname
         </Input>
@@ -107,7 +127,7 @@ watch(module, ({ semester }) => {
           </option>
         </Select>
 
-        <Button primary type="submit" class="!mt-6"> Hinzufügen </Button>
+        <Button primary type="submit" class="!mt-6"> Speichern </Button>
       </form>
     </template>
   </Dialog>

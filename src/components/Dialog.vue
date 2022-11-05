@@ -22,15 +22,15 @@ const closeModal = () => emit('close');
     <Dialog as="div" @close="closeModal" class="relative z-40">
       <TransitionChild
         as="template"
-        enter="duration-300 ease-out"
+        enter="transition duration-300 ease-out"
         enter-from="opacity-0"
         enter-to="opacity-100"
-        leave="duration-200 ease-in"
+        leave="transition duration-200 ease-in"
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
         <div
-          class="fixed inset-0 bg-black bg-opacity-25 dark:bg-opacity-90 dark:bg-gray-900"
+          class="fixed inset-0 bg-black bg-opacity-25 dark:bg-opacity-75 backdrop-blur-sm dark:bg-gray-400"
         />
       </TransitionChild>
 
@@ -40,10 +40,10 @@ const closeModal = () => emit('close');
         >
           <TransitionChild
             as="template"
-            enter="duration-300 ease-out"
+            enter="transition duration-150 ease-out"
             enter-from="opacity-0 scale-95"
             enter-to="opacity-100 scale-100"
-            leave="duration-200 ease-in"
+            leave="transition duration-150 ease-in"
             leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95"
           >

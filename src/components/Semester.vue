@@ -5,6 +5,7 @@ import { usePlannerStore } from '../store/plannerStore';
 import type { Semester } from '../types';
 import { totalEcts } from '../utils';
 import ModuleList from './module/ModuleList.vue';
+import MenuItem from './MenuItem.vue';
 import ScaleTransition from './utils/ScaleTransition.vue';
 
 const plannerStore = usePlannerStore();
@@ -73,10 +74,15 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
     <ModuleList :modules="semester.modules" :semester="semester">
       <template v-for="m in semester.modules" :key="m.id" #[`menu-${m.id}`]>
-        <ModuleMenu
-          :module="m"
-          @delete="plannerStore.removeModuleFromSemester(m)"
-        />
+        <ModuleMenu :module="m">
+          <MenuItem @click="plannerStore.removeModuleFromSemester(m)">
+            <i-material-symbols-delete
+              class="mr-1 text-purple-600 group-hover:text-purple-800"
+            />
+
+            entfernen
+          </MenuItem>
+        </ModuleMenu>
       </template>
     </ModuleList>
 

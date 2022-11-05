@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { MenuItem } from '@headlessui/vue';
-import Button from './forms/Button.vue';
 </script>
 
 <template>

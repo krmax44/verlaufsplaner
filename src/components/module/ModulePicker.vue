@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue';
 import Fuse from 'fuse.js';
 import ModuleList from './ModuleList.vue';
 import ModuleMenu from './ModuleMenu.vue';
+import MenuItem from '../MenuItem.vue';
 import ModuleCreator from './ModuleCreator.vue';
 import Input from '../forms/Input.vue';
 import Button from '../forms/Button.vue';
@@ -45,19 +46,24 @@ const onDrop = () => {
   if (module && semester) plannerStore.removeModuleFromSemester(module);
 };
 
-const deleteIsOpen = ref(false);
-const moduleForDeletion = ref<Module | undefined>();
+const isEditorOpen = ref(false);
+const isDeleteOpen = ref(false);
+const module = ref<Module | undefined>();
 
-const markForDeletion = (module: Module) => {
-  moduleForDeletion.value = module;
-  deleteIsOpen.value = true;
+const markForEdit = (m: Module) => {
+  module.value = m;
+  isEditorOpen.value = true;
+};
+
+const markForDeletion = (m: Module) => {
+  module.value = m;
+  isDeleteOpen.value = true;
 };
 
 const deleteModule = () => {
-  deleteIsOpen.value = false;
-  if (moduleForDeletion.value)
-    plannerStore.removeModule(moduleForDeletion.value);
-  moduleForDeletion.value = undefined;
+  isDeleteOpen.value = false;
+  if (module.value) plannerStore.removeModule(module.value);
+  module.value = undefined;
 };
 </script>
 
@@ -75,12 +81,10 @@ const deleteModule = () => {
         <h3 class="font-bold mb-1">Module</h3>
 
         <div class="ml-auto">
-          <ModuleCreator v-slot="{ open }">
-            <Button rounded @click="open">
-              <i-material-symbols-add />
-              <span class="sr-only">Neues Modul hinzufügen…</span>
-            </Button>
-          </ModuleCreator>
+          <Button rounded @click="isEditorOpen = true">
+            <i-material-symbols-add />
+            <span class="sr-only">Neues Modul hinzufügen…</span>
+          </Button>
         </div>
       </div>
 
@@ -89,20 +93,41 @@ const deleteModule = () => {
 
     <ModuleList :modules="modules" class="flex-1 overflow-auto">
       <template v-for="m in modules" :key="m.id" #[`menu-${m.id}`]>
-        <ModuleMenu :module="m" @delete="markForDeletion(m)" />
+        <ModuleMenu :module="m">
+          <MenuItem @click="markForDeletion(m)">
+            <i-material-symbols-delete
+              class="mr-1 text-purple-600 group-hover:text-purple-800"
+            />
+
+            löschen
+          </MenuItem>
+
+          <MenuItem @click="markForEdit(m)">
+            <i-material-symbols-edit
+              class="mr-1 text-purple-600 group-hover:text-purple-800"
+            />
+            bearbeiten
+          </MenuItem>
+        </ModuleMenu>
       </template>
     </ModuleList>
 
-    <Dialog :open="deleteIsOpen" @close="deleteIsOpen = false">
+    <ModuleCreator
+      :open="isEditorOpen"
+      @close="isEditorOpen = false"
+      :module="module"
+    />
+
+    <Dialog :open="isDeleteOpen" @close="isDeleteOpen = false">
       <template #title>Modul löschen</template>
 
       <template #description>
-        Möchtest du das Modul „{{ moduleForDeletion?.name }}“ wirklich löschen?
+        Möchtest du das Modul „{{ module?.name }}“ wirklich löschen?
       </template>
 
       <template #body>
         <HorizontalFieldset as="div">
-          <Button primary @click="deleteIsOpen = false"> Nicht löschen </Button>
+          <Button primary @click="isDeleteOpen = false"> Nicht löschen </Button>
           <Button danger @click="deleteModule">Entgültig löschen</Button>
         </HorizontalFieldset>
       </template>
