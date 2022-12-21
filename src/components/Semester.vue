@@ -33,7 +33,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
       dropping && !canDrop && 'ring-8 ring-red-500',
       dropping && canDrop && 'ring-purple-500',
 
-      !dropping && 'shadow dark:ring-4 dark:ring-purple-50 dark:ring-opacity-50'
+      !dropping && 'shadow dark:ring-4 dark:ring-purple-50 dark:ring-opacity-25'
     ]"
     @drop="onDrop"
     @dragover.prevent="dropping = true"

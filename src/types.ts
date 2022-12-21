@@ -1,3 +1,4 @@
+import type { state as PlannerState } from './store/plannerStore';
 export interface Module {
   name: string;
   id: string;
@@ -45,4 +46,15 @@ export interface Major {
   type: string;
   standardPeriod: number;
   slug: string;
+}
+
+export interface PlannerStore {
+  version: string;
+  isSetup: boolean;
+  settings: {
+    start: Turnus;
+  };
+  modules: Module[];
+  tags: ModuleTag[];
+  semesterCount: number;
 }

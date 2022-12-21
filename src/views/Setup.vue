@@ -32,7 +32,9 @@ const emptyProject = () => {
       >.
     </p>
 
-    <form class="rounded border border-gray-100 mt-8 divide-y divide-gray-100">
+    <form
+      class="rounded border border-gray-100 mt-8 divide-y divide-gray-100 bg-white dark:bg-black shadow dark:ring-4 ring-purple-50 ring-opacity-25"
+    >
       <div class="p-4">
         <Input type="search" placeholder="Suche" class="" />
       </div>

@@ -9,7 +9,7 @@ const tag = plannerStore.getTagById(props.tag);
 </script>
 
 <template>
-  <Badge class="bg-purple-100 text-purple-900" v-if="tag !== undefined">
+  <Badge v-if="tag !== undefined">
     {{ tag.name }}
   </Badge>
 </template>

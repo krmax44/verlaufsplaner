@@ -1,24 +1,19 @@
 import { defineStore } from 'pinia';
-import type { Module, Semester, Turnus, ModuleTag } from '../types';
+import type { Module, Semester, ModuleTag, PlannerStore } from '../types';
 import { getModules } from '../data/university';
 import { moduleFitsSemester, totalEcts } from '../utils';
 import { version } from '../../package.json';
 
 export const usePlannerStore = defineStore(`planner-${version}`, {
-  state() {
-    const modules: Module[] = [];
-    const tags: ModuleTag[] = [];
-
-    const settings = {
-      start: 'WS' as Turnus
-    };
-
+  state(): PlannerStore {
     return {
       version,
       isSetup: false,
-      settings,
-      modules,
-      tags,
+      settings: {
+        start: 'WS'
+      },
+      modules: [],
+      tags: [],
       semesterCount: 6
     };
   },

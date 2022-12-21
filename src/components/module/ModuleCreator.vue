@@ -52,8 +52,7 @@ const save = () => {
 
 watch(module, ({ semester }) => {
   const semesters = availableSemesters.value.map((s) => s.no);
-  if (semester && !semesters.includes(semester))
-    module.value.semester = undefined;
+  if (semester && !semesters.includes(semester)) module.value.semester = -1;
 });
 
 watch(props, ({ module: m }) => {
@@ -114,7 +113,7 @@ watch(props, ({ module: m }) => {
 
         <Select v-model="module.semester">
           <template #legend>zu Semester hinzufügen</template>
-          <option value="undefined">kein Semester</option>
+          <option :value="-1">kein Semester</option>
           <option
             v-for="semester in availableSemesters"
             :key="semester.no"

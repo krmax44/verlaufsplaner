@@ -72,6 +72,11 @@ const markForMove = (m: Module) => {
   module.value = m;
   isMoverOpen.value = true;
 };
+
+const addNewModule = () => {
+  isEditorOpen.value = true;
+  module.value = undefined;
+};
 </script>
 
 <template>
@@ -88,7 +93,7 @@ const markForMove = (m: Module) => {
         <h3 class="font-bold mb-1">Module</h3>
 
         <div class="ml-auto">
-          <Button rounded @click="isEditorOpen = true">
+          <Button rounded @click="addNewModule">
             <i-material-symbols-add />
             <span class="sr-only">Neues Modul hinzufügen…</span>
           </Button>

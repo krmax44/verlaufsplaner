@@ -47,8 +47,8 @@ const startDrag = (event: DragEventInit, module: Module) => {
           </div>
         </div>
         <div class="space-x-2 mt-2">
-          <Badge class="bg-purple-100 text-purple-900"> {{ m.ects }} LP </Badge>
-          <Badge class="bg-purple-100 text-purple-900">
+          <Badge> {{ m.ects }} LP </Badge>
+          <Badge>
             {{
               m.rota.sort((a, b) => b.charCodeAt(0) - a.charCodeAt(0)).join('/')
             }}
