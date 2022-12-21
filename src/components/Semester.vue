@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import { useDragStore } from '../store/dragStore';
 import { usePlannerStore } from '../store/plannerStore';
 import type { Semester } from '../types';
-import { totalEcts } from '../utils';
 import ModuleList from './module/ModuleList.vue';
 import MenuItem from './MenuItem.vue';
 import ScaleTransition from './utils/ScaleTransition.vue';
@@ -28,7 +27,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
 <template>
   <div
-    class="rounded relative transition-shadow"
+    class="flex flex-col rounded relative transition-shadow bg-white dark:bg-black"
     :class="[
       dropping && 'ring-8 ring-opacity-50 dark:ring-opacity-75',
       dropping && !canDrop && 'ring-8 ring-red-500',
@@ -40,7 +39,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
     @dragover.prevent="dropping = true"
     @dragleave.prevent="dropping = false"
   >
-    <div class="p-4">
+    <div class="flex flex-col p-4 w-full flex-1">
       <div class="flex">
         <div>
           <h3 class="font-bold">{{ semester.no }}. Semester</h3>
@@ -65,7 +64,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
       </div>
 
       <div
-        class="py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
+        class="flex-1 py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
         v-if="semester.modules.length === 0"
       >
         Module per Ziehen hinzufügen
@@ -88,7 +87,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
     <ScaleTransition>
       <div
-        class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-black bg-opacity-90 text-red-500 text-2xl z-20"
+        class="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-black bg-opacity-90 text-red-500 text-xl z-20"
         v-if="dropping && !canDrop"
       >
         <i-material-symbols-error class="mb-2" />

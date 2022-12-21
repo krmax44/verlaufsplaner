@@ -7,7 +7,7 @@ const plannerStore = usePlannerStore();
 
 <template>
   <header>
-    <div class="container mx-auto px-4 py-16 flex">
+    <div class="container mx-auto px-4 pb-16 pt-10 md:pt-16 flex">
       <div>
         <h1 class="text-xl font-semibold text-purple-900 dark:text-purple-100">
           studieren.lol

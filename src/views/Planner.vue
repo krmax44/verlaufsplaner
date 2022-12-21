@@ -16,7 +16,7 @@ const plannerStore = usePlannerStore();
       />
 
       <div class="col-span-2">
-        <div class="space-y-8">
+        <div class="lg:grid grid-cols-2 gap-4 space-y-4 lg:space-y-0">
           <ScaleGroupTransition>
             <Semester
               v-for="semester in plannerStore.semesters"
@@ -24,12 +24,12 @@ const plannerStore = usePlannerStore();
               :key="semester.no"
             />
           </ScaleGroupTransition>
+        </div>
 
-          <div class="flex justify-center mt-4">
-            <Button primary @click="plannerStore.addSemester" class="w-auto">
-              <i-material-symbols-add /> Semester hinzufügen…
-            </Button>
-          </div>
+        <div class="flex justify-center my-8">
+          <Button primary @click="plannerStore.addSemester" class="w-auto">
+            <i-material-symbols-add /> Semester hinzufügen…
+          </Button>
         </div>
       </div>
     </div>
