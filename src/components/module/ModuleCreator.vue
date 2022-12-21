@@ -42,7 +42,7 @@ const availableSemesters = computed(() =>
 );
 
 const save = () => {
-  if (editing) {
+  if (editing.value) {
     plannerStore.updateModule(props.module!.id, module.value as Module);
   } else {
     plannerStore.addModule(module.value as Module);
@@ -75,7 +75,7 @@ watch(props, ({ module: m }) => {
         </Input>
 
         <HorizontalFieldset as="div">
-          <Input type="number" v-model.number="module.id" min="0" required>
+          <Input type="text" v-model="module.id" minlength="1" required>
             Modulnummer
           </Input>
 
