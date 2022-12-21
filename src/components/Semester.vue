@@ -2,10 +2,11 @@
 import { computed, ref } from 'vue';
 import { useDragStore } from '../store/dragStore';
 import { usePlannerStore } from '../store/plannerStore';
-import type { Semester } from '../types';
+import type { Semester, Module } from '../types';
 import ModuleList from './module/ModuleList.vue';
 import MenuItem from './MenuItem.vue';
 import ScaleTransition from './utils/ScaleTransition.vue';
+import ModuleMover from './module/ModuleMover.vue';
 
 const plannerStore = usePlannerStore();
 const dragStore = useDragStore();
@@ -23,6 +24,13 @@ const onDrop = () => {
 
 const dropping = ref(false);
 const canDrop = computed(() => dragStore.canDrop(semester));
+
+const module = ref<Module | undefined>();
+const showMover = ref(false);
+const markForMove = (m: Module) => {
+  module.value = m;
+  showMover.value = true;
+};
 </script>
 
 <template>
@@ -73,7 +81,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
 
     <ModuleList :modules="semester.modules" :semester="semester">
       <template v-for="m in semester.modules" :key="m.id" #[`menu-${m.id}`]>
-        <ModuleMenu :module="m">
+        <ModuleMenu :module="m" @move="markForMove">
           <MenuItem @click="plannerStore.removeModuleFromSemester(m)">
             <i-material-symbols-delete
               class="mr-1 text-purple-600 group-hover:text-purple-800"
@@ -84,6 +92,15 @@ const canDrop = computed(() => dragStore.canDrop(semester));
         </ModuleMenu>
       </template>
     </ModuleList>
+
+    <Teleport to="body">
+      <ModuleMover
+        :module="module"
+        v-if="module"
+        :open="showMover"
+        @close="showMover = false"
+      />
+    </Teleport>
 
     <ScaleTransition>
       <div
