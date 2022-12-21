@@ -21,6 +21,7 @@ const defaults = {
   id: undefined as number | undefined,
   ects: undefined as number | undefined,
   rota: ['WS', 'SS'] as Turnus[],
+  tags: [] as string[],
   url: '',
   description: '',
   semester: undefined
