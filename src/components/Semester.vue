@@ -39,7 +39,7 @@ const canDrop = computed(() => dragStore.canDrop(semester));
     @dragover.prevent="dropping = true"
     @dragleave.prevent="dropping = false"
   >
-    <div class="flex flex-col p-4 w-full flex-1">
+    <div class="flex flex-col p-4 w-full">
       <div class="flex">
         <div>
           <h3 class="font-bold">{{ semester.no }}. Semester</h3>
@@ -62,13 +62,13 @@ const canDrop = computed(() => dragStore.canDrop(semester));
           </Button>
         </div>
       </div>
+    </div>
 
-      <div
-        class="flex-1 py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
-        v-if="semester.modules.length === 0"
-      >
-        Module per Ziehen hinzufügen
-      </div>
+    <div
+      class="flex-1 m-4 py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
+      v-if="semester.modules.length === 0"
+    >
+      Module per Ziehen hinzufügen
     </div>
 
     <ModuleList :modules="semester.modules" :semester="semester">
