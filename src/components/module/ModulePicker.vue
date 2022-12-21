@@ -42,7 +42,9 @@ const modules = computed(() =>
     : fuse.search(searchTerm.value).map((r) => r.item)
 );
 
+const dropping = ref(false);
 const onDrop = () => {
+  dropping.value = false;
   const { module, semester } = dragStore;
   if (module && semester) plannerStore.removeModuleFromSemester(module);
 };
@@ -81,10 +83,15 @@ const addNewModule = () => {
 
 <template>
   <div
-    class="rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25 bg-white dark:bg-black"
+    class="rounded flex-1 transition-shadow bg-white dark:bg-black"
+    :class="[
+      dropping && 'ring-8 ring-purple-500 ring-opacity-50 dark:ring-opacity-75',
+      !dropping && 'shadow dark:ring-4 ring-purple-50 ring-opacity-25'
+    ]"
     @drop="onDrop"
     @dragenter.prevent
-    @dragover.prevent
+    @dragover.prevent="dropping = true"
+    @dragleave.prevent="dropping = false"
   >
     <div
       class="p-4 pb-0 sticky top-0 bg-white dark:bg-black z-20 shadow-xl shadow-white dark:shadow-black mb-4"
