@@ -81,7 +81,7 @@ const addNewModule = () => {
 
 <template>
   <div
-    class="rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25"
+    class="rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25 bg-white dark:bg-black"
     @drop="onDrop"
     @dragenter.prevent
     @dragover.prevent
