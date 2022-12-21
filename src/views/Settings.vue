@@ -6,6 +6,7 @@ import Dialog from '../components/Dialog.vue';
 import Button from '../components/forms/Button.vue';
 import { plannerStoreSchema } from '../schemas';
 import { usePlannerStore } from '../store/plannerStore';
+import { version } from '../../package.json';
 
 const isOpen = ref(false);
 
@@ -24,7 +25,8 @@ const importBackup = () => {
 
     try {
       const data = JSON.parse(json);
-      plannerStoreSchema.parse(data);
+      const safeData = plannerStoreSchema.parse(data);
+      if (safeData.version !== version) return reject();
       plannerStore.$patch(data);
     } catch {
       return reject();
