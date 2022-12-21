@@ -11,6 +11,7 @@ import Dialog from '../Dialog.vue';
 import { usePlannerStore } from '../../store/plannerStore';
 import { useDragStore } from '../../store/dragStore';
 import type { Module } from '../../types';
+import ModuleMover from './ModuleMover.vue';
 
 const plannerStore = usePlannerStore();
 const dragStore = useDragStore();
@@ -65,6 +66,12 @@ const deleteModule = () => {
   if (module.value) plannerStore.removeModule(module.value);
   module.value = undefined;
 };
+
+const isMoverOpen = ref(false);
+const markForMove = (m: Module) => {
+  module.value = m;
+  isMoverOpen.value = true;
+};
 </script>
 
 <template>
@@ -91,9 +98,13 @@ const deleteModule = () => {
       <Input type="search" placeholder="Suchen…" v-model="searchTerm" />
     </div>
 
-    <ModuleList :modules="modules" class="flex-1 overflow-auto">
+    <ModuleList
+      :modules="modules"
+      class="flex-1 overflow-auto cursor-move"
+      @move="(m) => markForMove(m)"
+    >
       <template v-for="m in modules" :key="m.id" #[`menu-${m.id}`]>
-        <ModuleMenu :module="m">
+        <ModuleMenu :module="m" @move="markForMove(m)">
           <MenuItem @click="markForDeletion(m)">
             <i-material-symbols-delete
               class="mr-1 text-purple-600 group-hover:text-purple-800"
@@ -112,25 +123,37 @@ const deleteModule = () => {
       </template>
     </ModuleList>
 
-    <ModuleCreator
-      :open="isEditorOpen"
-      @close="isEditorOpen = false"
-      :module="module"
-    />
+    <!-- needs to be within root div, so external classes apply -->
+    <Teleport to="body">
+      <ModuleMover
+        :open="isMoverOpen"
+        v-if="module !== undefined"
+        :module="module"
+        @close="isMoverOpen = false"
+      />
 
-    <Dialog :open="isDeleteOpen" @close="isDeleteOpen = false">
-      <template #title>Modul löschen</template>
+      <ModuleCreator
+        :open="isEditorOpen"
+        @close="isEditorOpen = false"
+        :module="module"
+      />
 
-      <template #description>
-        Möchtest du das Modul „{{ module?.name }}“ wirklich löschen?
-      </template>
+      <Dialog :open="isDeleteOpen" @close="isDeleteOpen = false">
+        <template #title>Modul löschen</template>
 
-      <template #body>
-        <HorizontalFieldset as="div">
-          <Button primary @click="isDeleteOpen = false"> Nicht löschen </Button>
-          <Button danger @click="deleteModule">Entgültig löschen</Button>
-        </HorizontalFieldset>
-      </template>
-    </Dialog>
+        <template #description>
+          Möchtest du das Modul „{{ module?.name }}“ wirklich löschen?
+        </template>
+
+        <template #body>
+          <HorizontalFieldset as="div">
+            <Button primary @click="isDeleteOpen = false">
+              Nicht löschen
+            </Button>
+            <Button danger @click="deleteModule">Entgültig löschen</Button>
+          </HorizontalFieldset>
+        </template>
+      </Dialog>
+    </Teleport>
   </div>
 </template>

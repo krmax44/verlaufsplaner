@@ -2,196 +2,238 @@
   "modules": [
     {
       "name": "Algorithmen und Datenstrukturen",
-      "id": 40022,
+      "id": "40022",
       "version": 8,
       "ects": 6,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40022&version=8"
     },
     {
       "name": "Analysis I und Lineare Algebra für Ingenieurwissenschaften",
-      "id": 20122,
+      "id": "20122",
       "version": 3,
       "ects": 12,
       "rota": [
         "WS",
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=20122&version=3"
     },
     {
       "name": "Berechenbarkeit und Komplexität",
-      "id": 40356,
+      "id": "40356",
       "version": 9,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40356&version=9"
     },
     {
       "name": "Diskrete Strukturen",
-      "id": 40024,
+      "id": "40024",
       "version": 11,
       "ects": 6,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40024&version=11"
     },
     {
       "name": "Einführung in die Programmierung",
-      "id": 40017,
+      "id": "40017",
       "version": 9,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40017&version=9"
     },
     {
       "name": "Formale Sprachen und Automaten",
-      "id": 40018,
+      "id": "40018",
       "version": 8,
       "ects": 6,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40018&version=8"
     },
     {
       "name": "Informatik Propädeutikum",
-      "id": 40779,
+      "id": "40779",
       "version": 9,
       "ects": 3,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40779&version=9"
     },
     {
       "name": "Informatik und Gesellschaft",
-      "id": 40499,
+      "id": "40499",
       "version": 11,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40499&version=11"
     },
     {
       "name": "Informationssysteme und Datenanalyse",
-      "id": 40002,
+      "id": "40002",
       "version": 10,
       "ects": 6,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40002&version=10"
     },
     {
       "name": "Logik",
-      "id": 40023,
+      "id": "40023",
       "version": 6,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40023&version=6"
     },
     {
       "name": "Rechnernetze und Verteilte Systeme",
-      "id": 40672,
+      "id": "40672",
       "version": 12,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40672&version=12"
     },
     {
       "name": "Rechnerorganisation",
-      "id": 40019,
+      "id": "40019",
       "version": 8,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40019&version=8"
     },
     {
       "name": "Softwaretechnik und Programmierparadigmen",
-      "id": 40029,
+      "id": "40029",
       "version": 6,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40029&version=6"
     },
     {
       "name": "Stochastik für Informatik",
-      "id": 20217,
+      "id": "20217",
       "version": 5,
       "ects": 9,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=20217&version=5"
     },
     {
       "name": "Systemprogrammierung",
-      "id": 40020,
+      "id": "40020",
       "version": 6,
       "ects": 6,
       "rota": [
         "SS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40020&version=6"
     },
     {
       "name": "Wissenschaftliches Rechnen",
-      "id": 40038,
+      "id": "40038",
       "version": 9,
       "ects": 6,
       "rota": [
         "WS"
       ],
-      "required": true,
+      "tags": [
+        "required"
+      ],
       "description": "",
       "url": "https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?nummer=40038&version=9"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pflichtmodule",
+      "id": "required",
+      "checks": {
+        "minEcts": 102,
+        "maxEcts": 102
+      }
     }
   ]
 }

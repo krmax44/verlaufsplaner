@@ -1,12 +1,21 @@
 export interface Module {
   name: string;
-  id: number;
+  id: string;
   ects: number;
   rota: Turnus[];
   description: string;
   url: string;
-  required: boolean;
+  tags: string[];
   semester: number | undefined;
+}
+
+export interface ModuleTag {
+  name: string;
+  id: string;
+  checks: {
+    minEcts?: number;
+    maxEcts?: number;
+  };
 }
 
 export interface Course {

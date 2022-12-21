@@ -1,5 +1,5 @@
 import _universities from './universities.json';
-import type { University, Major, Module } from '../types';
+import type { University, Major, Module, ModuleTag } from '../types';
 
 interface UniversityIndex {
   majors: Major[];
@@ -7,6 +7,7 @@ interface UniversityIndex {
 
 interface MajorIndex {
   modules: Module[];
+  tags: ModuleTag[];
 }
 
 const majors = import.meta.glob<UniversityIndex>('./*/_index.json');
@@ -26,5 +27,5 @@ export async function getMajors(slug: string): Promise<Major[]> {
 
 export async function getModules(universitySlug: string, majorSlug: string) {
   const load = modules[`./${universitySlug}/${majorSlug}.json`];
-  return (await load()).modules;
+  return await load();
 }

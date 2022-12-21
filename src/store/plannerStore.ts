@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { Module, Semester, Turnus } from '../types';
+import type { Module, Semester, Turnus, ModuleTag } from '../types';
 import { getModules } from '../data/university';
 import { moduleFitsSemester, totalEcts } from '../utils';
 import { version } from '../../package.json';
@@ -7,6 +7,7 @@ import { version } from '../../package.json';
 export const usePlannerStore = defineStore(`planner-${version}`, {
   state() {
     const modules: Module[] = [];
+    const tags: ModuleTag[] = [];
 
     const settings = {
       start: 'WS' as Turnus
@@ -17,6 +18,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       isSetup: false,
       settings,
       modules,
+      tags,
       semesterCount: 6
     };
   },
@@ -28,7 +30,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
     unassignedModules(state): Module[] {
       return state.modules.filter((m) => m.semester === undefined);
     },
-    highestSemesterWithModule(state): number {
+    highestSemesterWithModule(): number {
       const chosenSemesters = this.assignedModules.map(
         (m) => m.semester as number
       );
@@ -69,7 +71,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
     getModuleIndex(module: Module): number {
       return this.modules.findIndex((m) => m.id === module.id);
     },
-    updateModule(id: number, module: Module) {
+    updateModule(id: string, module: Module) {
       const i = this.modules.findIndex((m) => m.id === id);
       if (i !== -1) {
         this.modules[i] = { ...module };
@@ -79,7 +81,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       const i = this.getModuleIndex(module);
       if (i !== -1) this.modules.splice(i, 1);
     },
-    getModuleById(id: number): Module | undefined {
+    getModuleById(id: string): Module | undefined {
       return this.modules.find((m) => m.id === id);
     },
 
@@ -106,10 +108,24 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       return true;
     },
 
+    getTagById(id: string): ModuleTag | undefined {
+      return this.tags.find((t) => t.id === id);
+    },
+    getTagEcts(tag: string): number {
+      return this.assignedModules
+        .filter((m) => m.tags.includes(tag))
+        .reduce((v, m) => v + m.ects, 0);
+    },
+
     async setMajor(universitySlug: string, majorSlug: string) {
-      const modules = await getModules(universitySlug, majorSlug);
+      const { modules, tags } = await getModules(universitySlug, majorSlug);
+
       this.modules.splice(0, this.modules.length);
       this.modules.push(...modules);
+
+      this.tags.splice(0, this.modules.length);
+      this.tags.push(...tags);
+
       this.isSetup = true;
     }
   },

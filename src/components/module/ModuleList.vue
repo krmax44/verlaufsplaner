@@ -3,7 +3,8 @@ import type { Module, Semester } from '../../types';
 import { useDragStore } from '../../store/dragStore';
 import Badge from '../Badge.vue';
 import ScaleGroupTransition from '../utils/ScaleGroupTransition.vue';
-import { ref, VNodeRef } from 'vue';
+import { ref } from 'vue';
+import ModuleTag from '../tag/ModuleTag.vue';
 
 const menuRefs = ref<Record<string, Element>>({});
 const dragStore = useDragStore();
@@ -12,6 +13,7 @@ const { semester } = defineProps<{
   modules: Module[];
   semester?: Semester;
 }>();
+defineEmits<{ (e: 'move', module: Module): void }>();
 
 const startDrag = (event: DragEventInit, module: Module) => {
   event.dataTransfer!.dropEffect = 'move';
@@ -32,7 +34,7 @@ const startDrag = (event: DragEventInit, module: Module) => {
         @contextmenu.prevent="menuRefs[m.id]?.querySelector('button')?.click()"
       >
         <div class="flex">
-          <h4>{{ m.name }}</h4>
+          <h4 @click="$emit('move', m)" class="cursor-pointer">{{ m.name }}</h4>
           <div
             class="ml-auto"
             :ref="
@@ -51,9 +53,8 @@ const startDrag = (event: DragEventInit, module: Module) => {
               m.rota.sort((a, b) => b.charCodeAt(0) - a.charCodeAt(0)).join('/')
             }}
           </Badge>
-          <Badge class="bg-purple-100 text-purple-900" v-if="m.required">
-            verpflichtend
-          </Badge>
+
+          <ModuleTag :tag="tag" v-for="tag in m.tags" :key="tag" />
         </div>
       </li>
     </ScaleGroupTransition>

@@ -23,8 +23,7 @@ const defaults = {
   rota: ['WS', 'SS'] as Turnus[],
   url: '',
   description: '',
-  semester: undefined,
-  required: false
+  semester: undefined
 };
 const module = ref({ ...(props.module ?? defaults) });
 
@@ -112,8 +111,6 @@ watch(props, ({ module: m }) => {
             Sommersemester
           </Checkbox>
         </HorizontalFieldset>
-
-        <Checkbox v-model="module.required"> Pflichtmodul </Checkbox>
 
         <Select v-model="module.semester">
           <template #legend>zu Semester hinzufügen</template>
