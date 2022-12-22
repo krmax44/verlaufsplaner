@@ -18,7 +18,7 @@ const plannerStore = usePlannerStore();
 
 const defaults = {
   name: '',
-  id: undefined as number | undefined,
+  id: undefined as string | undefined,
   ects: undefined as number | undefined,
   rota: ['WS', 'SS'] as Turnus[],
   tags: [] as string[],
