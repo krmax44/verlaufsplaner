@@ -11,11 +11,10 @@ import ModuleMover from './module/ModuleMover.vue';
 const plannerStore = usePlannerStore();
 const dragStore = useDragStore();
 
-const { semester } = toRefs(
-  defineProps<{
-    semester: Semester;
-  }>()
-);
+const props = defineProps<{
+  semester: Semester;
+}>();
+const { semester } = toRefs(props);
 
 const onDrop = () => {
   dropping.value = false;
