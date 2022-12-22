@@ -79,7 +79,7 @@ watch(props, ({ module: m }) => {
           </Input>
 
           <Input type="number" v-model.number="module.ects" min="0" required>
-            ETCS
+            ECTS
           </Input>
         </HorizontalFieldset>
 
