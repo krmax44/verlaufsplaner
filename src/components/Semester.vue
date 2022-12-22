@@ -84,9 +84,7 @@ const markForMove = (m: Module) => {
       <template v-for="m in semester.modules" :key="m.id" #[`menu-${m.id}`]>
         <ModuleMenu :module="m" @move="markForMove">
           <MenuItem @click="plannerStore.removeModuleFromSemester(m)">
-            <i-material-symbols-delete
-              class="mr-1 text-purple-600 group-hover:text-purple-800"
-            />
+            <i-material-symbols-delete />
 
             entfernen
           </MenuItem>

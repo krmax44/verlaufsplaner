@@ -12,3 +12,13 @@ import { MenuItem } from '@headlessui/vue';
     </button>
   </MenuItem>
 </template>
+
+<style scoped>
+button :deep(svg) {
+  @apply mr-1 text-purple-600;
+}
+
+button:hover :deep(svg) {
+  @apply text-purple-800; /* group-hover: somehow not working */
+}
+</style>

@@ -12,9 +12,7 @@ defineEmits<{
 <template>
   <Menu>
     <MenuItem @click="$emit('move', module)">
-      <i-material-symbols-swap-horiz
-        class="mr-1 text-purple-600 group-hover:text-purple-800"
-      />
+      <i-material-symbols-swap-horiz />
 
       verschieben
     </MenuItem>

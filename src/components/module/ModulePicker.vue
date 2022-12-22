@@ -147,15 +147,11 @@ const addNewModule = () => {
         <template v-for="m in modules" :key="m.id" #[`menu-${m.id}`]>
           <ModuleMenu :module="m" @move="markForMove(m)">
             <MenuItem @click="markForDeletion(m)">
-              <i-material-symbols-delete
-                class="mr-1 text-purple-600 group-hover:text-purple-800"
-              />
+              <i-material-symbols-delete />
               löschen
             </MenuItem>
             <MenuItem @click="markForEdit(m)">
-              <i-material-symbols-edit
-                class="mr-1 text-purple-600 group-hover:text-purple-800"
-              />
+              <i-material-symbols-edit />
               bearbeiten
             </MenuItem>
           </ModuleMenu>
