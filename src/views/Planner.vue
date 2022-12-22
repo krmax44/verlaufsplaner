@@ -2,9 +2,8 @@
 import { usePlannerStore } from '../store/plannerStore';
 import ModulePicker from '../components/module/ModulePicker.vue';
 import Semester from '../components/Semester.vue';
-import ScaleGroupTransition from '../components/utils/ScaleGroupTransition.vue';
 import Button from '../components/forms/Button.vue';
-import TagsProgress from '../components/tag/TagsProgress.vue';
+import TagList from '../components/tag/TagList.vue';
 
 const plannerStore = usePlannerStore();
 </script>
@@ -16,7 +15,7 @@ const plannerStore = usePlannerStore();
         <div class="space-y-4 lg:sticky top-8">
           <ModulePicker class="h-96 max-h-128 overflow-auto resize-y" />
 
-          <TagsProgress />
+          <TagList />
         </div>
       </aside>
 

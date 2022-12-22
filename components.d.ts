@@ -58,6 +58,8 @@ declare module '@vue/runtime-core' {
     Select: typeof import('./src/components/forms/Select.vue')['default']
     Semester: typeof import('./src/components/Semester.vue')['default']
     SlideTransition: typeof import('./src/components/utils/SlideTransition.vue')['default']
+    TagEditor: typeof import('./src/components/tag/TagEditor.vue')['default']
+    TagList: typeof import('./src/components/tag/TagList.vue')['default']
     TagProgress: typeof import('./src/components/tag/TagProgress.vue')['default']
     TagsProgress: typeof import('./src/components/tag/TagsProgress.vue')['default']
     Textarea: typeof import('./src/components/forms/Textarea.vue')['default']

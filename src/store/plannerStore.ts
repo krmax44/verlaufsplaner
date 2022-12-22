@@ -106,6 +106,29 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
     getTagById(id: string): ModuleTag | undefined {
       return this.tags.find((t) => t.id === id);
     },
+    addTag(tag: ModuleTag) {
+      this.tags.push({ ...tag });
+    },
+    getTagIndex(tag: ModuleTag): number {
+      return this.tags.findIndex((m) => m.id === tag.id);
+    },
+    updateTag(id: string, tag: ModuleTag) {
+      const i = this.tags.findIndex((m) => m.id === id);
+      if (i !== -1) {
+        this.tags[i] = { ...tag };
+      }
+    },
+    removeTag(tag: ModuleTag) {
+      // remove tag from tagged modules
+      this.modules.forEach((m) => {
+        const i = m.tags.indexOf(tag.id);
+        if (i !== -1) m.tags.splice(i, 1);
+      });
+
+      // remove tag
+      const i = this.getTagIndex(tag);
+      if (i !== -1) this.tags.splice(i, 1);
+    },
     getTagEcts(tag: string): number {
       return this.assignedModules
         .filter((m) => m.tags.includes(tag))

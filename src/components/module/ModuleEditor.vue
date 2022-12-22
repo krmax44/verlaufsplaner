@@ -9,7 +9,6 @@ import Input from '../forms/Input.vue';
 import Textarea from '../forms/Textarea.vue';
 import { usePlannerStore } from '../../store/plannerStore';
 import { moduleFitsSemester } from '../../utils';
-import Select from '../forms/Select.vue';
 
 const props = defineProps<{ module?: Module; open: boolean }>();
 const emit = defineEmits(['close']);
@@ -109,6 +108,19 @@ watch(props, ({ module: m }) => {
             :disabled="module.rota.length === 1 && module.rota[0] === 'SS'"
           >
             Sommersemester
+          </Checkbox>
+        </HorizontalFieldset>
+
+        <HorizontalFieldset v-if="plannerStore.tags.length !== 0">
+          <Legend>Tags</Legend>
+
+          <Checkbox
+            v-model="module.tags"
+            v-for="tag in plannerStore.tags"
+            :key="tag.id"
+            :value="tag.id"
+          >
+            {{ tag.name }}
           </Checkbox>
         </HorizontalFieldset>
 
