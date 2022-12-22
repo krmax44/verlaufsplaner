@@ -32,6 +32,11 @@ const emptyProject = () => {
       >.
     </p>
 
+    <p class="mt-2">
+      Achtung: dieses Tool befindet sich noch im frühen Entwicklungsstatus.
+      Deine Planungsdaten könnten bei Updates verloren gehen.
+    </p>
+
     <form
       class="rounded border border-gray-100 mt-8 divide-y divide-gray-100 bg-white dark:bg-black shadow dark:ring-4 ring-purple-50 ring-opacity-25"
     >
