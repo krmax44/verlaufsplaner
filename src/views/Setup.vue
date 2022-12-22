@@ -51,4 +51,12 @@ const emptyProject = () => {
       </router-view>
     </form>
   </section>
+
+  <Teleport to="#app">
+    <footer class="container mx-auto px-4 mt-16">
+      <ActionLink href="https://krmax44.de/impressum.html" target="_blank">
+        Impressum / Datenschutzerklärung
+      </ActionLink>
+    </footer>
+  </Teleport>
 </template>

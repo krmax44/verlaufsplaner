@@ -120,6 +120,15 @@ watch(trackingEnabled, () => {
             GitHub
           </ActionLink>
         </li>
+
+        <li>
+          <p>Rechtliches</p>
+
+          <ActionLink href="https://krmax44.de/impressum.html" target="_blank">
+            <i-material-symbols-policy />
+            Impressum / Datenschutzerklärung
+          </ActionLink>
+        </li>
       </ul>
     </template>
   </Dialog>
