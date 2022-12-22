@@ -74,7 +74,7 @@ const markForMove = (m: Module) => {
     </div>
 
     <div
-      class="flex-1 m-4 py-6 rounded bg-purple-50 dark:bg-purple-900 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
+      class="flex-1 m-4 py-6 rounded bg-purple-50 dark:bg-purple-900 dark:bg-opacity-50 text-purple-900 dark:text-purple-100 flex items-center justify-center mt-2"
       v-if="semester.modules.length === 0"
     >
       Module per Ziehen hinzufügen
