@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Promised } from 'vue-promised';
 import ActionLink from '../components/ActionLink.vue';
 import Dialog from '../components/Dialog.vue';
@@ -7,6 +7,7 @@ import Button from '../components/forms/Button.vue';
 import { plannerStoreSchema } from '../schemas';
 import { usePlannerStore } from '../store/plannerStore';
 import { version } from '../../package.json';
+import Checkbox from '../components/forms/Checkbox.vue';
 
 const isOpen = ref(false);
 
@@ -36,6 +37,24 @@ const importBackup = () => {
     resolve(true);
   });
 };
+
+const _paq = (window as any)._paq ?? [];
+const trackingEnabled = ref(true);
+_paq.push([
+  function (this: any) {
+    if (this.isUserOptedOut()) {
+      trackingEnabled.value = false;
+    }
+  }
+]);
+
+watch(trackingEnabled, () => {
+  if (trackingEnabled.value) {
+    _paq.push(['forgetUserOptOut']);
+  } else {
+    _paq.push(['optUserOut']);
+  }
+});
 </script>
 
 <template>
@@ -84,6 +103,11 @@ const importBackup = () => {
             <i-material-symbols-restart-alt />
             zur Einrichtung
           </ActionLink>
+        </li>
+
+        <li>
+          <p>Privatsphäre-respektierendes Tracking via Matomo</p>
+          <Checkbox v-model="trackingEnabled"> Tracking zulassen </Checkbox>
         </li>
 
         <li>
