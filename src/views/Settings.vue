@@ -38,13 +38,13 @@ const importBackup = () => {
   });
 };
 
-const _paq = (window as any)._paq ?? [];
 const doNotTrack =
   parseInt((window as any).doNotTrack || navigator.doNotTrack, 10) === 1;
+
+const _paq = (window as any)._paq ?? [];
 const trackingEnabled = ref(true);
 _paq.push([
   function (this: any) {
-    console.log(this);
     if (this.isUserOptedOut()) {
       trackingEnabled.value = false;
     }
