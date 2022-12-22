@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import Fuse from 'fuse.js';
 import ModuleList from './ModuleList.vue';
 import ModuleMenu from './ModuleMenu.vue';
@@ -12,6 +12,7 @@ import { usePlannerStore } from '../../store/plannerStore';
 import { useDragStore } from '../../store/dragStore';
 import type { Module } from '../../types';
 import ModuleMover from './ModuleMover.vue';
+import ScaleTransition from '../utils/ScaleTransition.vue';
 
 const plannerStore = usePlannerStore();
 const dragStore = useDragStore();
@@ -83,7 +84,7 @@ const addNewModule = () => {
 
 <template>
   <div
-    class="rounded flex-1 transition-shadow bg-white dark:bg-black"
+    class="flex flex-col flex-1 rounded transition-shadow bg-white dark:bg-black"
     :class="[
       dropping && 'ring-8 ring-purple-500 ring-opacity-50 dark:ring-opacity-75',
       !dropping && 'shadow dark:ring-4 ring-purple-50 ring-opacity-25'
@@ -110,30 +111,57 @@ const addNewModule = () => {
       <Input type="search" placeholder="Suchen…" v-model="searchTerm" />
     </div>
 
-    <ModuleList
-      :modules="modules"
-      class="flex-1 overflow-auto cursor-move"
-      @move="(m) => markForMove(m)"
-    >
-      <template v-for="m in modules" :key="m.id" #[`menu-${m.id}`]>
-        <ModuleMenu :module="m" @move="markForMove(m)">
-          <MenuItem @click="markForDeletion(m)">
-            <i-material-symbols-delete
-              class="mr-1 text-purple-600 group-hover:text-purple-800"
-            />
+    <ScaleTransition class="flex flex-col flex-1" mode="out-in">
+      <div
+        v-if="modules.length === 0 && searchTerm !== ''"
+        class="flex flex-col flex-1 items-center justify-center"
+      >
+        <p class="text-muted">Keine Suchergebnisse</p>
+      </div>
 
-            löschen
-          </MenuItem>
+      <div
+        v-else-if="plannerStore.modules.length === 0"
+        class="flex flex-col flex-1 items-center justify-center"
+      >
+        <div>
+          <Button primary @click="addNewModule">
+            <i-material-symbols-add />
+            Erstes Modul hinzufügen…
+          </Button>
+        </div>
+      </div>
 
-          <MenuItem @click="markForEdit(m)">
-            <i-material-symbols-edit
-              class="mr-1 text-purple-600 group-hover:text-purple-800"
-            />
-            bearbeiten
-          </MenuItem>
-        </ModuleMenu>
-      </template>
-    </ModuleList>
+      <div
+        v-else-if="plannerStore.unassignedModules.length === 0"
+        class="flex flex-col flex-1 items-center justify-center"
+      >
+        <p class="text-muted">Super – alle Module sind verteilt!</p>
+      </div>
+
+      <ModuleList
+        :modules="modules"
+        class="flex-1 overflow-auto cursor-move"
+        @move="(m) => markForMove(m)"
+        v-else
+      >
+        <template v-for="m in modules" :key="m.id" #[`menu-${m.id}`]>
+          <ModuleMenu :module="m" @move="markForMove(m)">
+            <MenuItem @click="markForDeletion(m)">
+              <i-material-symbols-delete
+                class="mr-1 text-purple-600 group-hover:text-purple-800"
+              />
+              löschen
+            </MenuItem>
+            <MenuItem @click="markForEdit(m)">
+              <i-material-symbols-edit
+                class="mr-1 text-purple-600 group-hover:text-purple-800"
+              />
+              bearbeiten
+            </MenuItem>
+          </ModuleMenu>
+        </template>
+      </ModuleList>
+    </ScaleTransition>
 
     <!-- needs to be within root div, so external classes apply -->
     <Teleport to="body">
