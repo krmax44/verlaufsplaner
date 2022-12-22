@@ -6,6 +6,7 @@
     leave-active-class="transition duration-75 ease-in"
     leave-from-class="transform scale-100 opacity-100"
     leave-to-class="transform scale-95 opacity-0"
+    mode="out-in"
   >
     <slot />
   </transition>

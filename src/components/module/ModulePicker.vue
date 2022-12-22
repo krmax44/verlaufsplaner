@@ -111,7 +111,7 @@ const addNewModule = () => {
       <Input type="search" placeholder="Suchen…" v-model="searchTerm" />
     </div>
 
-    <ScaleTransition class="flex flex-col flex-1" mode="out-in">
+    <ScaleTransition class="flex flex-col flex-1">
       <div
         v-if="modules.length === 0 && searchTerm !== ''"
         class="flex flex-col flex-1 items-center justify-center"
