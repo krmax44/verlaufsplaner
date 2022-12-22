@@ -29,7 +29,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       const chosenSemesters = this.assignedModules.map(
         (m) => m.semester as number
       );
-      return Math.max(...chosenSemesters);
+      return Math.max(...chosenSemesters, 0);
     },
     semesters(state): Semester[] {
       const semesterCount = Math.max(

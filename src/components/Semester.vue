@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, toRefs, ref } from 'vue';
 import { useDragStore } from '../store/dragStore';
 import { usePlannerStore } from '../store/plannerStore';
 import type { Semester, Module } from '../types';
@@ -11,19 +11,21 @@ import ModuleMover from './module/ModuleMover.vue';
 const plannerStore = usePlannerStore();
 const dragStore = useDragStore();
 
-const { semester } = defineProps<{
-  semester: Semester;
-}>();
+const { semester } = toRefs(
+  defineProps<{
+    semester: Semester;
+  }>()
+);
 
 const onDrop = () => {
   dropping.value = false;
 
   const { module } = dragStore;
-  if (module) plannerStore.addModuleToSemester(module, semester);
+  if (module) plannerStore.addModuleToSemester(module, semester.value);
 };
 
 const dropping = ref(false);
-const canDrop = computed(() => dragStore.canDrop(semester));
+const canDrop = computed(() => dragStore.canDrop(semester.value));
 
 const module = ref<Module | undefined>();
 const showMover = ref(false);
