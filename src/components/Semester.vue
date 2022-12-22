@@ -36,7 +36,7 @@ const markForMove = (m: Module) => {
 
 <template>
   <div
-    class="flex flex-col rounded relative transition-shadow bg-white dark:bg-black"
+    class="flex flex-col rounded relative transition-all bg-white dark:bg-black"
     :class="[
       dropping && 'ring-8 ring-opacity-50 dark:ring-opacity-75',
       dropping && !canDrop && 'ring-8 ring-red-500',

@@ -22,13 +22,11 @@ const plannerStore = usePlannerStore();
 
       <div class="col-span-2">
         <div class="lg:grid grid-cols-2 gap-4 space-y-4 lg:space-y-0">
-          <ScaleGroupTransition>
-            <Semester
-              v-for="semester in plannerStore.semesters"
-              :semester="semester"
-              :key="semester.no"
-            />
-          </ScaleGroupTransition>
+          <Semester
+            v-for="semester in plannerStore.semesters"
+            :semester="semester"
+            :key="semester.no"
+          />
         </div>
 
         <div class="flex justify-center my-8">
