@@ -39,9 +39,12 @@ const importBackup = () => {
 };
 
 const _paq = (window as any)._paq ?? [];
+const doNotTrack =
+  parseInt((window as any).doNotTrack || navigator.doNotTrack, 10) === 1;
 const trackingEnabled = ref(true);
 _paq.push([
   function (this: any) {
+    console.log(this);
     if (this.isUserOptedOut()) {
       trackingEnabled.value = false;
     }
@@ -107,7 +110,12 @@ watch(trackingEnabled, () => {
 
         <li>
           <p>Privatsphäre-respektierendes Tracking via Matomo</p>
-          <Checkbox v-model="trackingEnabled"> Tracking zulassen </Checkbox>
+          <span v-if="doNotTrack">
+            Nein, da du Do-Not-Track aktiviert hast.
+          </span>
+          <Checkbox v-model="trackingEnabled" v-else>
+            Tracking zulassen
+          </Checkbox>
         </li>
 
         <li>
