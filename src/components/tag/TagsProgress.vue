@@ -18,9 +18,18 @@ const color = (tag: ModuleTag): string | undefined => {
 
 <template>
   <div
-    class="rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25 bg-white dark:bg-black p-4"
+    class="p-4 pt-2 rounded shadow flex-1 dark:ring-4 ring-purple-50 ring-opacity-25 bg-white dark:bg-black"
   >
-    <h3 class="font-bold mb-3">Kategorien</h3>
+    <div class="flex mb-2 items-center">
+      <h3 class="font-bold">Kategorien</h3>
+
+      <div class="ml-auto">
+        <Button rounded @click="">
+          <i-material-symbols-add />
+          <span class="sr-only">Neuen Tag hinzufügen…</span>
+        </Button>
+      </div>
+    </div>
 
     <ul class="space-y-3">
       <li v-for="tag in plannerStore.tags" :key="tag.id">

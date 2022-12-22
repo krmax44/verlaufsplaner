@@ -95,10 +95,10 @@ const addNewModule = () => {
     @dragleave.prevent="dropping = false"
   >
     <div
-      class="p-4 pb-0 sticky top-0 bg-white dark:bg-black z-20 shadow-xl shadow-white dark:shadow-black mb-4"
+      class="px-4 pt-2 sticky top-0 bg-white dark:bg-black z-20 shadow-xl shadow-white dark:shadow-black mb-4"
     >
-      <div class="flex">
-        <h3 class="font-bold mb-1">Module</h3>
+      <div class="flex mb-2 items-center">
+        <h3 class="font-bold">Module</h3>
 
         <div class="ml-auto">
           <Button rounded @click="addNewModule">
