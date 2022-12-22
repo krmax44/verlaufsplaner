@@ -4,7 +4,7 @@ import Fuse from 'fuse.js';
 import ModuleList from './ModuleList.vue';
 import ModuleMenu from './ModuleMenu.vue';
 import MenuItem from '../MenuItem.vue';
-import ModuleCreator from './ModuleCreator.vue';
+import ModuleCreator from './ModuleEditor.vue';
 import Input from '../forms/Input.vue';
 import Button from '../forms/Button.vue';
 import Dialog from '../Dialog.vue';

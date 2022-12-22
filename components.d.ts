@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
     Menu: typeof import('./src/components/Menu.vue')['default']
     MenuItem: typeof import('./src/components/MenuItem.vue')['default']
     ModuleCreator: typeof import('./src/components/module/ModuleCreator.vue')['default']
+    ModuleEditor: typeof import('./src/components/module/ModuleEditor.vue')['default']
     ModuleList: typeof import('./src/components/module/ModuleList.vue')['default']
     ModuleMenu: typeof import('./src/components/module/ModuleMenu.vue')['default']
     ModuleMover: typeof import('./src/components/module/ModuleMover.vue')['default']
