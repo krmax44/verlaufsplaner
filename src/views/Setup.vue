@@ -46,7 +46,7 @@ const emptyProject = () => {
 
       <router-view v-slot="{ Component }">
         <SlideTransition>
-          <component :is="Component" class="divide-y divide-gray-100" />
+          <component :is="Component" class="divide-y divide-gray-300" />
         </SlideTransition>
       </router-view>
     </form>
