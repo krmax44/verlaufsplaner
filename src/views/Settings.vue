@@ -45,7 +45,7 @@ const importBackup = () => {
     <template #body>
       <ul class="space-y-4">
         <li>
-          <p class="text-sm mb-1">Backup</p>
+          <p>Backup</p>
           <div class="flex space-x-4">
             <ActionLink :href="downloadLink" download="settings.json">
               <i-material-symbols-download /> Exportieren
@@ -77,13 +77,23 @@ const importBackup = () => {
             <template></template>
           </Promised>
         </li>
+
         <li>
-          <p class="text-sm mb-1">
-            Verlaufsplan zurücksetzen und von vorne beginnen
-          </p>
+          <p>Verlaufsplan zurücksetzen und von vorne beginnen</p>
           <ActionLink :to="{ name: 'setup' }">
             <i-material-symbols-restart-alt />
             zur Einrichtung
+          </ActionLink>
+        </li>
+
+        <li>
+          <p>Quellcode</p>
+          <ActionLink
+            href="https://github.com/krmax44/verlaufsplaner/"
+            target="_blank"
+          >
+            <i-mdi-github />
+            GitHub
           </ActionLink>
         </li>
       </ul>
@@ -95,3 +105,9 @@ const importBackup = () => {
     <span class="sr-only">Einstellungen</span>
   </Button>
 </template>
+
+<style scoped>
+li > p {
+  @apply text-sm mb-1;
+}
+</style>
