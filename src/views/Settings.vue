@@ -55,7 +55,7 @@ const importBackup = () => {
               <i-material-symbols-upload /> Importieren
             </ActionLink>
 
-            <form class="sr-only" @submit="importBackup">
+            <form class="sr-only" @submit.prevent="importBackup">
               <input
                 type="file"
                 ref="importFile"
