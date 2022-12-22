@@ -24,7 +24,7 @@ const plannerStore = usePlannerStore();
             v-text="plannerStore.collectedEcts"
             class="text-purple-800 dark:text-purple-200 text-xl"
           />
-          <span class="text-gray-500 dark:text-gray-300 text-sm">ECTS</span>
+          <span class="text-muted text-sm">ECTS</span>
         </div>
 
         <div>

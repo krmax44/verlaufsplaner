@@ -31,7 +31,7 @@ const color = (tag: ModuleTag): string | undefined => {
           :value="plannerStore.getTagEcts(tag.id)"
           :background="color(tag)"
         />
-        <h4 class="mt-1 text-sm text-gray-700">{{ tag.name }}</h4>
+        <h4 class="mt-1 text-sm text-muted">{{ tag.name }}</h4>
       </li>
     </ul>
   </div>

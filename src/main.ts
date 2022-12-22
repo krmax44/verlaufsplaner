@@ -6,7 +6,7 @@ import App from './App.vue';
 import { usePlannerStore } from './store/plannerStore';
 import { routes } from './routes';
 import { version } from '../package.json';
-import 'tailwindcss/tailwind.css';
+import './style.css';
 
 const app = createApp(App);
 
