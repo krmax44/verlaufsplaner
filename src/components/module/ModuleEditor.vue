@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { Module, Turnus } from '../../types';
 import Dialog from '../Dialog.vue';
 import Checkbox from '../forms/Checkbox.vue';
@@ -9,6 +9,7 @@ import Input from '../forms/Input.vue';
 import Textarea from '../forms/Textarea.vue';
 import { usePlannerStore } from '../../store/plannerStore';
 import { moduleFitsSemester } from '../../utils';
+import mod from 'zod/lib';
 
 const props = defineProps<{ module?: Module; open: boolean }>();
 const emit = defineEmits(['close']);
@@ -23,9 +24,16 @@ const defaults = {
   tags: [] as string[],
   url: '',
   description: '',
-  semester: undefined
+  semester: -1
 };
-const module = ref({ ...(props.module ?? defaults) });
+type EditableModule = typeof defaults;
+
+const cloneModule = (m: EditableModule): EditableModule => ({
+  ...m,
+  rota: [...m.rota],
+  tags: [...m.tags]
+});
+const module = ref(cloneModule((props.module as EditableModule) ?? defaults));
 
 const editing = computed((): boolean => {
   return (
@@ -35,28 +43,35 @@ const editing = computed((): boolean => {
 });
 
 const availableSemesters = computed(() =>
-  plannerStore.semesters.filter((s) =>
-    moduleFitsSemester(s, module.value as Module)
-  )
+  plannerStore.semesters
+    .filter((s) => moduleFitsSemester(s, module.value as Module))
+    .map((s) => s.no)
 );
 
 const save = () => {
+  const safeModule = module.value as Module;
+
   if (editing.value) {
-    plannerStore.updateModule(props.module!.id, module.value as Module);
+    plannerStore.updateModule(props.module!.id, safeModule);
   } else {
-    plannerStore.addModule(module.value as Module);
+    plannerStore.addModule(safeModule as Module);
   }
 
   emit('close');
 };
 
-watch(module, ({ semester }) => {
-  const semesters = availableSemesters.value.map((s) => s.no);
-  if (semester && !semesters.includes(semester)) module.value.semester = -1;
-});
+watch(
+  module,
+  async ({ semester }) => {
+    if (!availableSemesters.value.includes(semester))
+      module.value.semester = -1;
+  },
+  { deep: true }
+);
 
 watch(props, ({ module: m }) => {
-  if (m) module.value = { ...m };
+  if (m) module.value = cloneModule(m as EditableModule);
+  else module.value = cloneModule(defaults);
 });
 </script>
 
@@ -129,10 +144,10 @@ watch(props, ({ module: m }) => {
           <option :value="-1">kein Semester</option>
           <option
             v-for="semester in availableSemesters"
-            :key="semester.no"
-            :value="semester.no"
+            :key="semester"
+            :value="semester"
           >
-            {{ semester.no }}. Semester
+            {{ semester }}. Semester
           </option>
         </Select>
 
