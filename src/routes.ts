@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import Planner from './views/Planner.vue';
 import Setup from './views/Setup.vue';
+import chooseStart from './views/Setup/chooseStart.vue';
 import chooseUniversity from './views/Setup/chooseUniversity.vue';
 import chooseMajor from './views/Setup/chooseMajor.vue';
 
@@ -17,10 +18,15 @@ export const routes: Readonly<RouteRecordRaw[]> = [
       {
         path: '/',
         name: 'setup',
+        component: chooseStart
+      },
+      {
+        path: '/university',
+        name: 'setup:university',
         component: chooseUniversity
       },
       {
-        path: '/:slug/',
+        path: '/:slug',
         name: 'setup:major',
         component: chooseMajor
       }
