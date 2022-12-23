@@ -58,7 +58,13 @@ const deleteTag = () => {
       </div>
     </div>
 
-    <ul class="divide-y divide-gray-300">
+    <p
+      class="py-8 text-center text-muted"
+      v-if="plannerStore.tags.length === 0"
+    >
+      Noch keine Kategorien.
+    </p>
+    <ul class="divide-y divide-gray-300" v-else>
       <li
         v-for="tag in plannerStore.tags"
         :key="tag.id"
