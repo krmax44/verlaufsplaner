@@ -13,7 +13,9 @@ const plannerStore = usePlannerStore();
     <div class="lg:grid grid-cols-3 gap-x-10 space-y-10 lg:space-y-0">
       <aside>
         <div class="space-y-4 lg:sticky top-8">
-          <ModulePicker class="h-96 max-h-128 overflow-auto resize-y" />
+          <ModulePicker
+            class="md:min-h-[14rem] md:h-96 max-h-96 md:max-h-[32rem] overflow-auto resize-y"
+          />
 
           <TagList />
         </div>

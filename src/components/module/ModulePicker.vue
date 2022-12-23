@@ -121,7 +121,7 @@ const addNewModule = () => {
 
       <div
         v-else-if="plannerStore.modules.length === 0"
-        class="flex flex-col flex-1 items-center justify-center"
+        class="py-8 flex flex-col flex-1 items-center justify-center"
       >
         <div>
           <Button primary @click="addNewModule">
