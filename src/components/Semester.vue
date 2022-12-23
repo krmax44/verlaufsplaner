@@ -103,7 +103,7 @@ const markForMove = (m: Module) => {
 
     <ScaleTransition>
       <div
-        class="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-black bg-opacity-90 text-red-500 text-xl z-20"
+        class="absolute inset-0 p-4 flex flex-col items-center justify-center text-center bg-white dark:bg-black bg-opacity-90 text-red-500 text-xl z-20"
         v-if="dropping && !canDrop"
       >
         <i-material-symbols-error class="mb-2" />
