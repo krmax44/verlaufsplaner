@@ -69,7 +69,7 @@ watch(trackingEnabled, () => {
         <li>
           <p>Backup</p>
           <div class="flex space-x-4">
-            <ActionLink :href="downloadLink" download="settings.json">
+            <ActionLink :href="downloadLink" download="verlaufsplan.json">
               <i-material-symbols-download /> Exportieren
             </ActionLink>
 
