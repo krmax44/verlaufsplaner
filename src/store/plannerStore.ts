@@ -138,7 +138,7 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
     reset() {
       this.isSetup = false;
       this.modules.splice(0, this.modules.length);
-      this.tags.splice(0, this.modules.length);
+      this.tags.splice(0, this.tags.length);
     },
     async setMajor(universitySlug: string, majorSlug: string) {
       const { modules, tags } = await getModules(universitySlug, majorSlug);
