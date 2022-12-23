@@ -1,5 +1,11 @@
 import { defineStore } from 'pinia';
-import type { Module, Semester, ModuleTag, PlannerStore } from '../types';
+import type {
+  Module,
+  Semester,
+  ModuleTag,
+  PlannerStore,
+  Turnus
+} from '../types';
 import { getModules } from '../data/university';
 import { moduleFitsSemester, totalEcts } from '../utils';
 import { version } from '../../package.json';
@@ -140,18 +146,17 @@ export const usePlannerStore = defineStore(`planner-${version}`, {
       this.modules.splice(0, this.modules.length);
       this.tags.splice(0, this.tags.length);
     },
-    async setMajor(universitySlug: string, majorSlug: string) {
+    async setMajor(universitySlug: string, majorSlug: string, start?: Turnus) {
       const { modules, tags } = await getModules(universitySlug, majorSlug);
 
-      this.reset();
+      this.emptyProject(start);
       this.modules.push(...modules);
       this.tags.push(...tags);
-
-      this.isSetup = true;
     },
 
-    emptyProject() {
+    emptyProject(start: Turnus = 'WS') {
       this.reset();
+      this.settings.start = start;
       this.isSetup = true;
     }
   },

@@ -1,18 +1,19 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import ActionLink from '../components/ActionLink.vue';
-import Input from '../components/forms/Input.vue';
-import ScaleTransition from '../components/utils/ScaleTransition.vue';
+import SetupButton from './Setup/SetupButton.vue';
 import SlideTransition from '../components/utils/SlideTransition.vue';
-import { usePlannerStore } from '../store/plannerStore';
 
-const plannerStore = usePlannerStore();
 const router = useRouter();
+const route = useRoute();
 
-const emptyProject = async () => {
-  plannerStore.emptyProject();
-  await router.push({ name: 'planner' });
-};
+const to = ref('');
+const from = ref('');
+router.beforeEach((t, f) => {
+  to.value = t.fullPath;
+  from.value = f.fullPath;
+});
 </script>
 
 <template>
@@ -26,23 +27,36 @@ const emptyProject = async () => {
     </p>
 
     <form
-      class="rounded border border-gray-100 mt-8 divide-y divide-gray-100 bg-white dark:bg-black shadow dark:ring-4 ring-purple-50 ring-opacity-25"
+      class="rounded border border-gray-100 mt-8 bg-white dark:bg-black shadow dark:ring-4 ring-purple-50 ring-opacity-25"
+      @submit.prevent
     >
-      <ScaleTransition>
-        <div class="p-4" v-if="router.currentRoute.value.name !== 'setup'">
-          <Input type="search" placeholder="Suche" class="" />
-        </div>
-      </ScaleTransition>
-
       <router-view v-slot="{ Component }">
-        <SlideTransition>
-          <component :is="Component" class="divide-y divide-gray-300" />
+        <SlideTransition
+          :direction="from.length < to.length ? 'left' : 'right'"
+        >
+          <component :is="Component" class="divide-y divide-gray-300">
+            <SetupButton
+              @click="router.go(-1)"
+              v-if="route.name !== 'setup'"
+              :chevron="false"
+            >
+              <i-material-symbols-arrow-back class="mr-2 text-purple-900" />
+              Schritt zurück
+            </SetupButton>
+
+            <!-- 
+            TODO: add search
+              <div class="p-4" v-if="route.name !== 'setup'">
+                <Input type="search" placeholder="Suche" class="" />
+              </div> 
+            -->
+          </component>
         </SlideTransition>
       </router-view>
     </form>
 
     <Teleport to="#app">
-      <footer class="container mx-auto px-4 mt-16">
+      <footer class="container mx-auto px-4 py-8 md:py-16 mt-auto">
         <ActionLink href="https://krmax44.de/impressum.html" target="_blank">
           Impressum / Datenschutzerklärung
         </ActionLink>

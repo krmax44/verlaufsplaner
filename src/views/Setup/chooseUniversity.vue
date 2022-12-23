@@ -1,51 +1,38 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { onBeforeRouteLeave, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { universities } from '../../data/university';
 import { usePlannerStore } from '../../store/plannerStore';
+import SetupButton from './SetupButton.vue';
 
 const plannerStore = usePlannerStore();
 const router = useRouter();
 
-const loading = ref(false);
-onBeforeRouteLeave(() => {
-  loading.value = true;
-});
-
 const emptyProject = async () => {
-  plannerStore.emptyProject();
+  const start =
+    router.currentRoute.value.params.semester === 'summer' ? 'SS' : 'WS';
+  plannerStore.emptyProject(start);
   await router.push({ name: 'planner' });
 };
 </script>
 
 <template>
   <div>
-    <Button class="flex !p-4" @click.prevent="emptyProject" :disabled="loading">
-      <p class="flex items-center">
-        <i-material-symbols-add class="mr-2 text-purple-900" />
-        leeres Projekt
-      </p>
-      <div class="ml-auto self-center">
-        <i-material-symbols-chevron-right />
-      </div>
-    </Button>
+    <slot />
 
-    <Button
-      class="flex !p-4"
-      @click.prevent="
+    <SetupButton @click="emptyProject">
+      <i-material-symbols-add class="mr-2 text-purple-900" />
+      leeres Projekt
+    </SetupButton>
+
+    <SetupButton
+      @click="
         $router.push({ name: 'setup:major', params: { slug: university.slug } })
       "
       v-for="university in universities"
       :key="university.slug"
-      :disabled="loading"
     >
-      <p class="flex items-center">
-        <i-material-symbols-school class="mr-2 text-purple-900" />
-        {{ university.name }}
-      </p>
-      <div class="ml-auto self-center">
-        <i-material-symbols-chevron-right />
-      </div>
-    </Button>
+      <i-material-symbols-school class="mr-2 text-purple-900" />
+      {{ university.name }}
+    </SetupButton>
   </div>
 </template>

@@ -2,48 +2,38 @@
 import { useRouter } from 'vue-router';
 import { usePlannerStore } from '../../store/plannerStore';
 import { Turnus } from '../../types';
+import SetupButton from './SetupButton.vue';
 
 const plannerStore = usePlannerStore();
 const router = useRouter();
 
 const setSemester = async (start: Turnus) => {
-  plannerStore.reset();
-  plannerStore.$patch({ settings: { start } });
-  await router.push({ name: 'setup:university' });
+  const semester = start === 'WS' ? 'winter' : 'summer';
+  await router.push({ name: 'setup:university', params: { semester } });
 };
 </script>
 
 <template>
   <div>
-    <Button
-      class="flex !p-4 !justify-start"
-      @click.prevent="router.push({ name: 'planner' })"
+    <slot />
+
+    <SetupButton
+      @click="router.push({ name: 'planner' })"
       v-if="plannerStore.isSetup"
+      :chevron="false"
     >
-      <p class="flex items-center">
-        <i-material-symbols-undo class="mr-2 text-purple-900" />
-        zurück zum bestehenden Projekt
-      </p>
-    </Button>
+      <i-material-symbols-arrow-back class="mr-2 text-purple-900" />
+      zurück zum bestehenden Projekt
+    </SetupButton>
 
-    <Button class="flex !p-4" @click.prevent="() => setSemester('WS')">
-      <p class="flex items-center">
-        <i-material-symbols-ac-unit class="mr-2 text-purple-900" />
-        Start im Wintersemester
-      </p>
-      <div class="ml-auto self-center">
-        <i-material-symbols-chevron-right />
-      </div>
-    </Button>
+    <SetupButton @click="() => setSemester('WS')">
+      <i-material-symbols-ac-unit class="mr-2 text-purple-900" />
+      Start im Wintersemester
+    </SetupButton>
 
-    <Button class="flex !p-4" @click.prevent="() => setSemester('SS')">
-      <p class="flex items-center">
-        <i-material-symbols-sunny class="mr-2 text-purple-900" />
-        Start im Sommersemester
-      </p>
-      <div class="ml-auto self-center">
-        <i-material-symbols-chevron-right />
-      </div>
-    </Button>
+    <SetupButton @click="() => setSemester('SS')">
+      <i-material-symbols-sunny class="mr-2 text-purple-900" />
+      Start im Sommersemester
+    </SetupButton>
   </div>
 </template>

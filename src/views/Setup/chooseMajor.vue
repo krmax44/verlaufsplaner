@@ -5,6 +5,7 @@ import { ref } from 'vue';
 import { Major } from '../../types';
 import { usePlannerStore } from '../../store/plannerStore';
 import { useRoute, useRouter } from 'vue-router';
+import SetupButton from './SetupButton.vue';
 
 export default {
   setup() {
@@ -20,12 +21,15 @@ export default {
     };
 
     const setMajor = async (major: Major) => {
-      await plannerStore.setMajor(route.params.slug as string, major.slug);
+      const university = route.params.slug as string;
+      const start = route.params.start === 'summer' ? 'SS' : 'WS';
+      await plannerStore.setMajor(university, major.slug, start);
       await router.push({ name: 'planner' });
     };
 
     return { loading, majors, setData, setMajor };
   },
+  components: { SetupButton },
   beforeRouteEnter(to, from, next) {
     try {
       getMajors(to.params.slug as string).then((majors) =>
@@ -47,17 +51,14 @@ export default {
 
 <template>
   <div>
-    <Button
-      class="flex !p-4"
+    <slot />
+
+    <SetupButton
       @click="setMajor(major)"
       v-for="major in majors"
       :key="major.slug"
-      :disabled="loading"
     >
-      <p>Informatik</p>
-      <div class="ml-auto self-center">
-        <i-material-symbols-chevron-right />
-      </div>
-    </Button>
+      {{ major.name }}
+    </SetupButton>
   </div>
 </template>
