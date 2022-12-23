@@ -8,9 +8,9 @@ import { usePlannerStore } from '../store/plannerStore';
 const plannerStore = usePlannerStore();
 const router = useRouter();
 
-const emptyProject = () => {
-  plannerStore.$patch({ isSetup: true, modules: [] });
-  router.push({ name: 'planner' });
+const emptyProject = async () => {
+  plannerStore.$patch({ isSetup: true, modules: [], tags: [] });
+  await router.push({ name: 'planner' });
 };
 </script>
 
@@ -50,13 +50,13 @@ const emptyProject = () => {
         </SlideTransition>
       </router-view>
     </form>
-  </section>
 
-  <Teleport to="#app">
-    <footer class="container mx-auto px-4 mt-16">
-      <ActionLink href="https://krmax44.de/impressum.html" target="_blank">
-        Impressum / Datenschutzerklärung
-      </ActionLink>
-    </footer>
-  </Teleport>
+    <Teleport to="#app">
+      <footer class="container mx-auto px-4 mt-16">
+        <ActionLink href="https://krmax44.de/impressum.html" target="_blank">
+          Impressum / Datenschutzerklärung
+        </ActionLink>
+      </footer>
+    </Teleport>
+  </section>
 </template>

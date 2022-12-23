@@ -15,12 +15,12 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     component: Setup,
     children: [
       {
-        path: '',
+        path: '/',
         name: 'setup',
         component: chooseUniversity
       },
       {
-        path: ':slug',
+        path: '/:slug/',
         name: 'setup:major',
         component: chooseMajor
       }

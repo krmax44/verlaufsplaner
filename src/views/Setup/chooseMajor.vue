@@ -21,7 +21,7 @@ export default {
 
     const setMajor = async (major: Major) => {
       await plannerStore.setMajor(route.params.slug as string, major.slug);
-      router.push({ name: 'planner' });
+      await router.push({ name: 'planner' });
     };
 
     return { loading, majors, setData, setMajor };
