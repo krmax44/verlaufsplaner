@@ -80,7 +80,11 @@ const markForMove = (m: Module) => {
       Module per Ziehen hinzufügen
     </div>
 
-    <ModuleList :modules="semester.modules" :semester="semester">
+    <ModuleList
+      :modules="semester.modules"
+      :semester="semester"
+      @move="markForMove"
+    >
       <template v-for="m in semester.modules" :key="m.id" #[`menu-${m.id}`]>
         <ModuleMenu :module="m" @move="markForMove">
           <MenuItem @click="plannerStore.removeModuleFromSemester(m)">
