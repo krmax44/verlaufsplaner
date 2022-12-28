@@ -50,6 +50,8 @@ const availableSemesters = computed(() =>
 
 const save = () => {
   const safeModule = module.value as Module;
+  safeModule.semester =
+    safeModule.semester === -1 ? undefined : safeModule.semester;
 
   if (editing.value) {
     plannerStore.updateModule(props.module!.id, safeModule);
