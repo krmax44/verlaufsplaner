@@ -1,23 +1,24 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { usePlannerStore } from '../../store/plannerStore';
 import { Module } from '../../types';
 import { moduleFitsSemester } from '../../utils';
 
-const { module } = defineProps<{ module: Module; open: boolean }>();
+const props = defineProps<{ module: Module; open: boolean }>();
+const { module } = toRefs(props);
 const $emit = defineEmits<{ (e: 'close'): void }>();
 
 const plannerStore = usePlannerStore();
 
 const availableSemesters = computed(() =>
-  plannerStore.semesters.filter((s) => moduleFitsSemester(s, module))
+  plannerStore.semesters.filter((s) => moduleFitsSemester(s, module.value))
 );
 
 const pickedSemester = ref(availableSemesters.value[0]?.no);
 
 const moveModuleToSemester = () => {
   const semester = plannerStore.getSemesterByNo(pickedSemester.value);
-  if (semester) plannerStore.addModuleToSemester(module, semester);
+  if (semester) plannerStore.addModuleToSemester(module.value, semester);
 
   $emit('close');
 };
