@@ -128,7 +128,7 @@ watch(props, ({ module: m }) => {
           </Checkbox>
         </HorizontalFieldset>
 
-        <HorizontalFieldset v-if="plannerStore.tags.length !== 0">
+        <HorizontalFieldset v-if="plannerStore.tags.length !== 0" :wrap="true">
           <Legend>Tags</Legend>
 
           <Checkbox
