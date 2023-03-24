@@ -5,7 +5,7 @@ const { as } = defineProps<{ as?: string }>();
 <template>
   <component
     :is="as ?? 'fieldset'"
-    class="fieldset flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-4"
+    class="fieldset flex flex-col flex-wrap md:flex-row gap-1 md:gap-x-4"
   >
     <slot />
   </component>
